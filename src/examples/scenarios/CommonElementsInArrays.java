@@ -49,6 +49,8 @@ public class CommonElementsInArrays {
 
     private static boolean hasCommonElement(char[] array1, char[] array2){
 
+        // BigO = O(a * b) where a size of array1 and b size of array2
+        // Every element in array is compared to every other element via nested loop
         for (char characterX: array1){
             for (char characterY: array2){
                 if (characterX == characterY)
@@ -60,6 +62,13 @@ public class CommonElementsInArrays {
     }
 
     private static boolean hasCommonElementInHashMap(char[] array1, char[] array2){
+
+        // BigO = O(a + b) where a size of array1 and b size of array2 as two linear loops are executed
+        // In the first loop the map containsKey time complexity is O(log a)
+        // The time complexity for first loop = O(a log a)
+        // In the second loop the map containsKey time complexity is O(log b) - Worst case
+        // The time complexity for second loop = O(b log b)
+        // The overall time complexity = O(a log a + b log b)
 
         HashMap<String, Boolean> map = new HashMap<>();
         String strValue;
