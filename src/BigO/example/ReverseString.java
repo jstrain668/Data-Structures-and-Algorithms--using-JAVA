@@ -15,43 +15,43 @@ public class ReverseString {
         System.out.println("String to reverse : "+stringToReverse);
 
         stopWatch.start();
-        System.out.println("Reversed string :"+reverseString.reverseStringA(stringToReverse));
+        System.out.println("Reversed string using char Array from tail: "+reverseString.reverseStringFromTail(stringToReverse));
         stopWatch.stop();
         System.out.println("String reversed in "+stopWatch.getNanoTime()+" nano seconds");
         stopWatch.reset();
 
         stopWatch.start();
-        System.out.println("Reversed string :"+reverseString.reverseStringB(stringToReverse));
+        System.out.println("Reversed string using char Array from head: "+reverseString.reverseStringFromHead(stringToReverse));
         stopWatch.stop();
         System.out.println("String reversed in "+stopWatch.getNanoTime()+" nano seconds");
         stopWatch.reset();
 
         stopWatch.start();
-        System.out.println("Reversed string :"+reverseString.reverseStringC(stringToReverse));
+        System.out.println("Reversed string using String: "+reverseString.reverseString(stringToReverse));
         stopWatch.stop();
         System.out.println("String reversed in "+stopWatch.getNanoTime()+" nano seconds");
         stopWatch.reset();
 
         stopWatch.start();
-        System.out.println("Reversed string :"+reverseString.reverseStringD(stringToReverse));
+        System.out.println("Reversed string using StringBuilder: "+reverseString.reverseStringBuilder(stringToReverse));
         stopWatch.stop();
         System.out.println("String reversed in "+stopWatch.getNanoTime()+" nano seconds");
         stopWatch.reset();
 
         stopWatch.start();
-        System.out.println("Reversed string :"+reverseString.reverseStringE(stringToReverse));
+        System.out.println("Reversed string using no loop StringBuilder :"+reverseString.reverseStringBuilderNoLoop(stringToReverse));
         stopWatch.stop();
         System.out.println("String reversed in "+stopWatch.getNanoTime()+" nano seconds");
         stopWatch.reset();
 
         stopWatch.start();
-        System.out.println("Reversed string :"+reverseString.reverseStringSimple(stringToReverse));
+        System.out.println("Reversed string using Stack :"+reverseString.reverseStringStack(stringToReverse));
         stopWatch.stop();
         System.out.println("String reversed in "+stopWatch.getNanoTime()+" nano seconds");
         stopWatch.reset();
     }
 
-    private static String reverseStringA(String stringToReverse) {
+    private String reverseStringFromTail(String stringToReverse) {
 
         char[] reversedCharArray = new char[stringToReverse.length()];
         int charArrayIndex = 0;
@@ -62,7 +62,8 @@ public class ReverseString {
         if (stringToReverse.length() == 1)
             return stringToReverse;
 
-        // Last character position in stringToReverse is its length -1
+        // Start at tail and traverse to head
+        // Time complexity O(n)
         for (int i=stringToReverse.length()-1; i >= 0; i--){
             reversedCharArray[charArrayIndex] = stringToReverse.charAt(i);
             charArrayIndex++;
@@ -71,7 +72,7 @@ public class ReverseString {
         return String.valueOf(reversedCharArray);
     }
 
-    private static String reverseStringB(String stringToReverse) {
+    private String reverseStringFromHead(String stringToReverse) {
 
         char[] reversedCharArray = new char[stringToReverse.length()];
         int charArrayIndex = stringToReverse.length()-1;
@@ -82,6 +83,8 @@ public class ReverseString {
         if (stringToReverse.length() == 1)
             return stringToReverse;
 
+        // Start at head and traverse to tail
+        // Time complexity O(n)
         for (int i=0; i < stringToReverse.length(); i++){
             reversedCharArray[charArrayIndex] = stringToReverse.charAt(i);
             charArrayIndex--;
@@ -90,7 +93,24 @@ public class ReverseString {
         return String.valueOf(reversedCharArray);
     }
 
-    private static String reverseStringC(String stringToReverse) {
+    private String reverseString(String stringToReverse) {
+
+        String temp = "";
+
+        if (stringToReverse == null || stringToReverse.length() == 0)
+            return "";
+
+        // Start at tail and traverse to head
+        // Append each character to String
+        // Time complexity O(n)
+        for (int i=stringToReverse.length()-1; i >= 0; i--){
+            temp += stringToReverse.charAt(i);
+        }
+
+        return temp;
+    }
+
+    private String reverseStringBuilder(String stringToReverse) {
 
         StringBuilder temp = new StringBuilder();
 
@@ -100,6 +120,9 @@ public class ReverseString {
         if (stringToReverse.length() == 1)
             return stringToReverse;
 
+        // Start at tail and traverse to head
+        // Append each character to StringBuilder
+        // Time complexity O(n)
         for (int i=stringToReverse.length()-1; i >= 0; i--){
             temp.append(stringToReverse.charAt(i));
         }
@@ -107,21 +130,19 @@ public class ReverseString {
         return temp.toString();
     }
 
-    private static String reverseStringD(String stringToReverse) {
-
-        String temp = "";
+    private String reverseStringBuilderNoLoop(String stringToReverse){
 
         if (stringToReverse == null || stringToReverse.length() == 0)
             return "";
 
-        for (int i=stringToReverse.length()-1; i >= 0; i--){
-            temp += stringToReverse.charAt(i);
-        }
+        if (stringToReverse.length() == 1)
+            return stringToReverse;
 
-        return temp;
+        // Time complexity O(n)
+        return new StringBuilder(stringToReverse).reverse().toString();
     }
 
-    private static String reverseStringE(String stringToReverse)
+    private String reverseStringStack(String stringToReverse)
     {
         char[] reverseString = new char[stringToReverse.length()];
         // Declare a stack of type Character
@@ -149,18 +170,9 @@ public class ReverseString {
             // get the character from the top of the stack
             reverseString[i++] = stack.pop();
         }
+
+        //Time Complexity O(2n)
         // return string object
         return new String(reverseString);
-    }
-
-    private String reverseStringSimple(String stringToReverse){
-
-        if (stringToReverse == null || stringToReverse.length() == 0)
-            return "";
-
-        if (stringToReverse.length() == 1)
-            return stringToReverse;
-
-        return new StringBuilder(stringToReverse).reverse().toString();
     }
 }
