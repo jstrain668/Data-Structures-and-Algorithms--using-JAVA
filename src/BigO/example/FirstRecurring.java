@@ -21,7 +21,7 @@ public class FirstRecurring {
     private Integer firstRecurringElementBruteForce(int[] array){
 
         //Time Complexity = O(i*j)
-        //Space Complexity = O(i)
+        //Space Complexity = O(1)
         for (int i=1; i < array.length; i++) {
             for (int j=i-1; j >= 0; j--) {
                 if (array[i] == array[j])
