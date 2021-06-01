@@ -14,6 +14,8 @@ public class SelectionSort {
     // After the inner loop has been completed, the elements of positions i (beginning of the right part)
     // and minPos are swapped (unless they are the same element).
 
+    // Time complexity: O(nxn)
+    // Space Complexity: O(1)
     public void simpleSelectionSort(int[] elements){
 
 
