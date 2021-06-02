@@ -60,8 +60,8 @@ public class BubbleSorting {
                 }
             }
 
-            // IF no two elements were
-            // swapped by inner loop, then break out of outer loop
+            // IF no two elements were swapped by inner loop,
+            // then break out of outer loop
             if (!swapped)
                 break;
         }
