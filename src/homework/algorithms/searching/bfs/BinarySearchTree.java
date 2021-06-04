@@ -65,7 +65,26 @@ public class BinarySearchTree {
         }
 
         return resultArray;
+    }
 
+    public boolean lookUp(int value){
+        Node current = this.root;
+
+        if (current == null)
+            return false;
+
+        while (current != null){
+
+            if (value < current.value){ //Go left
+                current = current.left;
+            } else if (value > current.value){ //Go right
+                current = current.right;
+            } else { //Found
+                return true;
+            }
+        }
+
+        return false;
     }
 
     // main method
@@ -84,5 +103,7 @@ public class BinarySearchTree {
         bst.insert(1);
 
         System.out.println("bfs: " + bst.breadthFirstSearch());
+        int lookUpValue = 50;
+        System.out.println("Lookup of "+lookUpValue+" in BST: "+bst.lookUp(lookUpValue));
     }
 }
