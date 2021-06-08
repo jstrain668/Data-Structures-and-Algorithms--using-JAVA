@@ -6,20 +6,23 @@ https://introcs.cs.princeton.edu/java/23recursion/
 
 */
 
+import java.util.HashMap;
+
 public class Fibonacci {
 
-    private long[] fn = new long[92];
+    private HashMap<Integer,Long> fibHM = new HashMap<>();
 
     public long efficientFibonacci(int n){
 
-        if (n <= 1)
+        if (n == 0 || n == 1)
             return n;
 
-        if (fn[n] > 0)
-            return fn[n];
+        if (fibHM.containsKey(n))
+            return fibHM.get(n);
 
-        fn[n] = efficientFibonacci(n-1) + efficientFibonacci(n-2);
-        return fn[n];
+        Long nthValue = efficientFibonacci(n-1) + efficientFibonacci(n-2);
+        fibHM.put(n,nthValue);
+        return nthValue;
 
     }
 
