@@ -15,6 +15,7 @@ class ReverseStringTest {
     @BeforeEach
     public void init(){
         rs = new ReverseString();
+
     }
 
     @Test
@@ -28,6 +29,7 @@ class ReverseStringTest {
 
     @Test public void reversePalindromeString(){
         assertEquals("aba", rs.reverseString("aba"));
+
     }
 
     @Test public void reverseSameCharacterString(){
