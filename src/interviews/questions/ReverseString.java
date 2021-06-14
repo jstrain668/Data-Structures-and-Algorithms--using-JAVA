@@ -50,10 +50,33 @@ public class ReverseString {
         return new String(charArray);
     }
 
+    //Description: Swap from respective ends of the string. Increment counter from start pos and
+    // decrement from end pos, swapping again until counters are equal.
+    // Time Complexity O(n/2) = O(n)
+    // Space Complexity O(1). Passed in character array is updated with no recourse to additional
+    // character array
+    public void reverseCharArray(char[] charArray){
+
+        if (charArray.length ==0 || charArray.length==1)
+            return;
+
+        int decCounter = charArray.length-1;
+
+        for (int i=0;i <= charArray.length/2;i++){
+            char temp = charArray[i];
+            charArray[i] = charArray[decCounter];
+            charArray[decCounter] = temp;
+            decCounter--;
+        }
+    }
+
     public static void main(String[] args) {
         ReverseString rs = new ReverseString();
-        String strToBeReversed = "Reverse";
+        String strToBeReversed = "Square";
+        char[] charArray = strToBeReversed.toCharArray();
         System.out.println("Original string: "+strToBeReversed);
         System.out.println("Reversed string: "+rs.reverseStringForLoop(strToBeReversed));
+        rs.reverseCharArray(charArray);
+        System.out.println("Reversed character array: "+String.valueOf(charArray));
     }
 }
