@@ -54,8 +54,8 @@ public class SingleNumber {
 
     public static void main(String[] args) {
         SingleNumber sn = new SingleNumber();
-        //int[] nums = new int[] {4,1,2,1,2};
-        int[] nums = new int[] {4,0,4};
+        int[] nums = new int[] {4,1,2,1,2};
+        //int[] nums = new int[] {4,0,4};
         System.out.println("Numbers array: "+ Arrays.toString(nums));
         System.out.println("Number which occurs once in array: "+sn.singleNumber(nums));
         System.out.println("Number which occurs once in array using XOR: "+sn.singleNumberXOR(nums));
