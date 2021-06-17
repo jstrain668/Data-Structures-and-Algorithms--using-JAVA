@@ -1,5 +1,8 @@
 package interviews.questions;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ReverseLinkedList {
 
     private ListNode head;
@@ -63,6 +66,12 @@ public class ReverseLinkedList {
         return this.tail;
     }
 
+    // Description: Given the head node of a singly linked list, reverse the list and return the
+    // head of the reversed singly linked list. Use current which points to head of list to traverse
+    // the list. Next points to the next node on the list and prev the previous node in the list. As each
+    // node is traversed it becomes the head until the lst node is processed which becomes the head
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
     public ListNode reverseList(ListNode head){
 
         if (head == null)
@@ -81,6 +90,20 @@ public class ReverseLinkedList {
         return head = prev;
     }
 
+    public List printList(ListNode head){
+
+        ListNode current = head;
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        int index = 0;
+
+        while (current != null){
+            arrayList.add(index,current.val);
+            current = current.next;
+            index++;
+        }
+        return arrayList;
+    }
+
     public static void main(String[] args) {
         ReverseLinkedList rll = new ReverseLinkedList();
         rll.insertAtFront(1);
@@ -88,6 +111,8 @@ public class ReverseLinkedList {
         rll.insertAtEnd(3);
         rll.insertAtEnd(4);
         rll.insertAtEnd(5);
-        ListNode node = rll.reverseList(rll.getHead());
+        System.out.println("Original list: "+rll.printList(rll.getHead()).toString());
+        ListNode reverseHeadNode = rll.reverseList(rll.getHead());
+        System.out.println("Reversed list: "+rll.printList(reverseHeadNode).toString());
     }
 }
