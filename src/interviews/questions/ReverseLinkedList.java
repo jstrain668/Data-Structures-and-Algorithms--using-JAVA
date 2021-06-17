@@ -104,6 +104,25 @@ public class ReverseLinkedList {
         return arrayList;
     }
 
+    public ListNode recursiveReverseList(ListNode head){
+
+        //Null list passed in
+        if (head == null)
+            return head;
+
+        //List with one node or reached end of list
+        if (head.next == null)
+            return head;
+
+        ListNode newHeadNode = recursiveReverseList(head.next);
+
+        // Change references for middle chain
+        head.next.next = head;
+        head.next = null;
+
+        return newHeadNode;
+    }
+
     public static void main(String[] args) {
         ReverseLinkedList rll = new ReverseLinkedList();
         rll.insertAtFront(1);
@@ -114,5 +133,7 @@ public class ReverseLinkedList {
         System.out.println("Original list: "+rll.printList(rll.getHead()).toString());
         ListNode reverseHeadNode = rll.reverseList(rll.getHead());
         System.out.println("Reversed list: "+rll.printList(reverseHeadNode).toString());
+        ListNode originalHeadNode = rll.recursiveReverseList(reverseHeadNode);
+        System.out.println("Original list: "+rll.printList(originalHeadNode).toString());
     }
 }
