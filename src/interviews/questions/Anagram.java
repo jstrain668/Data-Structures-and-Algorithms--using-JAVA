@@ -13,6 +13,7 @@ public class Anagram {
     //hashmap leaving zero size.
     // This solution requires O(n) time to create hashmap.
     // Auxillary space of O(n).
+    // https://csjobinterview.wordpress.com/2012/03/21/check-if-two-strings-are-anagrams/
     public boolean isAnagramWithHashMap(String s, String t){
         HashMap<Character,Integer> aMap = new HashMap<>();
 
