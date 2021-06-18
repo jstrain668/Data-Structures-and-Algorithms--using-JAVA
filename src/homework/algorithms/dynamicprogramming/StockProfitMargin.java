@@ -49,11 +49,30 @@ public class StockProfitMargin {
         return maxProfit;
     }
 
+    public int simpleMaxProfit(int[] prices){
+        int maxProfit = 0;
+        int minSellingPrice = prices[0];
+
+        for (int i=0; i < prices.length; i++){
+
+            if (prices[i] < minSellingPrice){
+                minSellingPrice = prices[i];
+            }
+
+            int profit = prices[i] - minSellingPrice;
+            if (profit > maxProfit){
+                maxProfit = profit;
+            }
+        }
+
+        return maxProfit;
+    }
     public static void main(String[] args) {
         int[] prices = {7,1,5,3,6,4};
-        //int[] prices = {7,6,4,3,1};
+        int[] prices1 = {7,6,4,3,1};
         StockProfitMargin spm = new StockProfitMargin();
         System.out.println("Maximum profit return: double pass "+spm.doublePassMaxProfit(prices));
         System.out.println("Maximum profit return: single pass "+spm.singlePassMaxProfit(prices));
+        System.out.println("Maximum profit return: single pass "+spm.simpleMaxProfit(prices));
     }
 }
