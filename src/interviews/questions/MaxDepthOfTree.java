@@ -60,11 +60,12 @@ public class MaxDepthOfTree {
         }
     }
 
-    //Description: Recursively traverse left and right tree to record depth level. Traverse subtrees until leaf
+    // Description: Recursively traverse left and right tree to record depth level. Traverse subtrees until leaf
     // node (null) is reached. Repeat until all subtrees are traversed the depth of left and right subtrees
     // from root.
     // Time Complexity: O(n) - traverse all nodes to find the deepest path
     // Space Complexity: O(1) - variables to record left and right depths
+    // https://www.educative.io/edpresso/finding-the-maximum-depth-of-a-binary-tree
 
     public int maxDepth(TreeNode root){
 
