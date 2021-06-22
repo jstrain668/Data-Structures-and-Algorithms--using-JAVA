@@ -50,7 +50,7 @@ public class ReverseLinkedList {
             //Create new node with specified value
             ListNode newNode = new ListNode(value);
 
-            //New node points to (next) old head
+            //Old tail points to newNode via next pointer
             this.tail.next = newNode;
 
             //New node becomes tail
