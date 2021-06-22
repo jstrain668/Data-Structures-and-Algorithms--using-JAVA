@@ -50,6 +50,7 @@ public class IntersectionOfArrays {
         return listToArray(result);
     }
 
+    //https://medium.com/@punitkmr/intersection-of-two-arrays-ii-ffb26f04dfd1
     public static void main(String[] args) {
         IntersectionOfArrays ioa = new IntersectionOfArrays();
         int[] nums1 = new int[] {1,2,2,1};
