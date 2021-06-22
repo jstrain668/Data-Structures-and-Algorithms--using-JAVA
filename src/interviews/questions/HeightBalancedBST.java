@@ -2,6 +2,7 @@ package interviews.questions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 
 
 public class HeightBalancedBST {
@@ -42,7 +43,7 @@ public class HeightBalancedBST {
             //Create new node with specified value
             SingleLinkNode newNode = new SingleLinkNode(value);
 
-            //New node points to (next) old head
+            //New node points to old head via next ptr
             newNode.next = head;
 
             //New node becomes head
@@ -59,7 +60,7 @@ public class HeightBalancedBST {
             //Create new node with specified value
             SingleLinkNode newNode = new SingleLinkNode(value);
 
-            //New node points to (next) old tail
+            //Old tail next points to newNode
             this.tail.next = newNode;
 
             //New node becomes tail
@@ -148,6 +149,7 @@ public class HeightBalancedBST {
         return node;
     }
 
+    // https://dev.to/seanpgallivan/solution-convert-sorted-list-to-binary-search-tree-2i0e#idea
     public TreeNode sortedSingledLinkedListToBST(SingleLinkNode head){
 
         int nodeCount = 0;
