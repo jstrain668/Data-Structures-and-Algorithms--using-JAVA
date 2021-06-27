@@ -3,11 +3,12 @@ package interviews.questions;
 public class NumberOf1Bits {
 
 
-    //Description: We check each of the 32bits of the number. If the bit is 11, we add one to the number
-    // of 11-bits. We can check the ith bit of a number using a bit mask. We start with a mask m=1 because
-    // the binary representation of 11 is, 0000 0000 0000 0000 0000 0000 0000 0001
-    // Clearly, a logical AND between any number and the mask 1 gives us the least significant bit of this
-    // number. To check the next bit, we shift the mask to the left by one.
+    //Description: We check each of the 32bits of the number. If the bit is 1, we add
+    // one to the number of 1-bits. We can check the ith bit of a number using a bit mask.
+    // We start with a mask m=1 because
+    // the binary representation of 1 is, 0000 0000 0000 0000 0000 0000 0000 0001
+    // Clearly, a logical AND between any number and the mask 1 gives us the least significant
+    // bit of this number. To check the next bit, we shift the mask to the left by one.
     // 0000 0000 0000 0000 0000 0000 0000 0010. And so on.
     // Time Complexity: O(n)
     // Space Complexity: O(1)
