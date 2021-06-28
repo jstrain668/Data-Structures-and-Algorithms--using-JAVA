@@ -12,6 +12,8 @@ public class Fibonacci {
 
     private HashMap<Integer,Long> fibHM = new HashMap<>();
 
+    // Time complexity of O(n)
+    // But space complexity has now increased with usage of HashMap
     public long efficientFibonacci(int n){
 
         if (n == 0 || n == 1)
@@ -26,6 +28,7 @@ public class Fibonacci {
 
     }
 
+    // Time Complexity = O(2 to the power of n)
     public long inefficientFibonacci(int n){
         if (n <= 1)
             return n;
@@ -36,8 +39,8 @@ public class Fibonacci {
     public static void main(String[] args) {
 
         Fibonacci fibonacci = new Fibonacci();
-        System.out.println(fibonacci.inefficientFibonacci(8));
-        System.out.println(fibonacci.efficientFibonacci(8));
+        //System.out.println(fibonacci.inefficientFibonacci(100));
+        System.out.println(fibonacci.efficientFibonacci(100));
     }
 
 }
