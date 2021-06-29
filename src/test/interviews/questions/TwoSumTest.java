@@ -26,4 +26,11 @@ class TwoSumTest {
         assertArrayEquals(new int[] {2,1}, ts.twoSum(nums2,6));
         assertArrayEquals(new int[] {0,1}, ts.twoSum(nums3,6));
     }
+
+    @Test
+    void findPairWithSum() {
+        assertArrayEquals(new int[] {1,0}, ts.findPairWithSum(nums1,9));
+        assertArrayEquals(new int[] {2,1}, ts.findPairWithSum(nums2,6));
+        assertArrayEquals(new int[] {1,0}, ts.findPairWithSum(nums3,6));
+    }
 }
