@@ -47,6 +47,34 @@ public class TwoSum {
         return new int[]{};
     }
 
+    // Description: Store the difference between the target value and the array value in a hashmap.
+    // If the array index value (keyValue) is present in the hashmap then have found values ehich
+    // add to target value
+    // Time Complexity O(n) = 1 for loop
+    // Space Complexity O(n) for the Hashmap
+    public int[] findPairWithSum(int[] nums, int target){
+
+        if (nums == null || nums.length < 2) {
+            throw new IllegalArgumentException("Null array or array size less than 2 not allowed");
+        }
+
+        HashMap<Integer, Integer> srcMap = new HashMap<>();
+        int[] result = new int[2];
+
+        for (int i=0; i < nums.length; i++){
+            int keyValue = nums[i];
+            int difference = target - keyValue;
+
+            if (srcMap.containsKey(keyValue)){
+                result[0] = i;
+                result[1] = srcMap.get(keyValue);
+            } else {
+                srcMap.put(difference,i);
+            }
+        }
+        return result;
+    }
+
     public static void main(String[] args) {
         TwoSum ts = new TwoSum();
         int[] nums1 = {2,7,11,15};
@@ -55,5 +83,6 @@ public class TwoSum {
         int target = 6;
         System.out.println("Source array: "+ Arrays.toString(nums3)+ " and target value: "+target);
         System.out.println("Target values: "+Arrays.toString(ts.twoSum(nums3,target)));
+        System.out.println("Target values: "+Arrays.toString(ts.findPairWithSum(nums3,target)));
     }
 }
