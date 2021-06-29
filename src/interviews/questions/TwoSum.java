@@ -44,7 +44,7 @@ public class TwoSum {
         }
 
         //Shouldn't get to here but if we do, this array signifies no match
-        return new int[]{0, 0};
+        return new int[]{};
     }
 
     public static void main(String[] args) {
