@@ -43,6 +43,7 @@ public class LongestCommonPrefix {
         for (int i = 1; i < strs.length; i++)
         {
             if (strs[i].length() < min){
+                min = strs[i].length();
                 index = i;
             }
         }
@@ -69,12 +70,13 @@ public class LongestCommonPrefix {
         if (size == 1)
             return strs[0];
 
-        //Longest possible common prefix is the smallest string in the array of strings
+        //Longest possible common prefix is equal in length to the smallest string in the array
         int minStrIndex = findIndexOfMinString(strs);
         String prefix = strs[minStrIndex];
 
         //Cycle through each string, look for a match against longest possible common prefix and if not
-        //found reduce prefix size by one until match found or prefix is empty
+        //found reduce prefix size by one until match found or prefix is empty. Because its prefix match
+        //will be at index 0 of strs[i]
         for (int i = 0; i < strs.length; i++) {
             while (strs[i].indexOf(prefix) != 0) {
                 prefix = prefix.substring(0, prefix.length() - 1);
