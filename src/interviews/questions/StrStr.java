@@ -14,19 +14,24 @@ public class StrStr {
         return haystack.indexOf(needle);
     }
 
+    //Description: Starting at index 0 of the haystack string, create a substring equal in length to
+    //the string to be matched (needle) and check for equality. If not matched index is incremented
+    // creating a new substring and tested for matching against the needle string. Process is repeated
+    // until match found or index exceeds the length of haystack string minus length of needle.
+    // The index of the haystack where the match was found is returned.
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
     public int strStr(String haystack, String needle) {
-        int index = -1;
         if(needle.length()==0) {
             return 0;
         }
 
-        for(int x = 0; x <= (haystack.length()-needle.length()); x++){
-            if(haystack.substring(x, x+needle.length()).equals(needle)) {
-                index = x;
-                break;
+        for(int i = 0; i <= (haystack.length()-needle.length()); i++){
+            if(haystack.substring(i, i+needle.length()).equals(needle)) {
+                return i;
             }
         }
-        return index;
+        return -1;
     }
 
     public static void main(String[] args) {
