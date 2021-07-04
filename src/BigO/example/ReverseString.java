@@ -49,6 +49,25 @@ public class ReverseString {
         stopWatch.stop();
         System.out.println("String reversed in "+stopWatch.getNanoTime()+" nano seconds");
         stopWatch.reset();
+
+        stopWatch.start();
+        System.out.println("Reversed string using Stack :"+reverseString.reverseStr(stringToReverse));
+        stopWatch.stop();
+        System.out.println("String reversed in "+stopWatch.getNanoTime()+" nano seconds");
+        stopWatch.reset();
+    }
+
+    private String reverseStr(String str){
+
+        char[] charArray = str.toCharArray();
+
+        for (int i=0; i < charArray.length/2; i++){
+            int endIndex = charArray.length - i -1;
+            char temp = charArray[i];
+            charArray[i] = charArray[endIndex];
+            charArray[endIndex] = temp;
+        }
+        return String.valueOf(charArray);
     }
 
     private String reverseStringFromTail(String stringToReverse) {
