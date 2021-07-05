@@ -1,5 +1,7 @@
 package interviews.questions;
 
+//Question Reference: https://leetcode.com/problems/valid-palindrome/
+
 public class ValidPalindrome {
 
     public boolean alphaNumeric(char c){
@@ -50,10 +52,54 @@ public class ValidPalindrome {
         return true;
     }
 
+    //Description: Create a new StringBuffer where all non-alphanumeric characters are removed and
+    //case of source string is lowered as its a case insensitive check for the string to be a valid
+    //palindrome. After creating the StringBuffer with only alphanumerics check string is a valid
+    //palindrome by comparing startIndex (0) and endIndex (length -1) and if not a match return false
+    //otherwise continue processing incrementing startIndex and decrementing endIndex. If we reach end
+    //of while loop then string is a valid palindrome.
+    //Time Complexity: O(n) to create alphanumeric Stringbuffer and add O(m) for char/digit comparison.
+    // Add O(n/2) for the while loop for each char. Overall its O(n)
+    //Space Complexity: O(n) - Appending a character each time to the StringBuffer
+    public boolean isPalindrome2(String s) {
+
+        if (s == null || s.length() == 0) {
+            throw new IllegalArgumentException("Null or empty string passed");
+        }
+
+        if (s.length() == 1) {
+            return true;
+        }
+
+        s = s.toLowerCase();
+
+        StringBuffer sb = new StringBuffer();
+
+        for (int i=0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if (alphaNumeric(c)){
+                sb.append(c);
+            }
+        }
+
+        int startIndex = 0;
+        int endIndex= sb.length() - 1;
+
+        while (startIndex <= endIndex) {
+            if (!(sb.charAt(startIndex) == sb.charAt(endIndex))){
+                return false;
+            }
+            startIndex++;
+            endIndex--;
+        }
+
+        return true;
+    }
     public static void main(String[] args) {
         ValidPalindrome vp = new ValidPalindrome();
         String str = "A man, a plan, a canal: Panama";
         System.out.println("Source string: "+str);
         System.out.println("String is a valid palindrome: "+vp.isPalindrome(str));
+        System.out.println("String is a valid palindrome: "+vp.isPalindrome2(str));
     }
 }
