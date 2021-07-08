@@ -2,6 +2,8 @@ package interviews.questions;
 
 import java.util.*;
 
+//Reference: https://leetcode.com/problems/majority-element/
+
 public class MajorityElement {
 
 
