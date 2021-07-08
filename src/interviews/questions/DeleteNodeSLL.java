@@ -1,5 +1,7 @@
 package interviews.questions;
 
+//Reference: https://leetcode.com/problems/delete-node-in-a-linked-list/
+
 public class DeleteNodeSLL {
 
     ListNode head, tail;
