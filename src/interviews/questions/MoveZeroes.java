@@ -36,12 +36,30 @@ public class MoveZeroes {
         }
     }
 
+    //Time Complexity: O(n)
+    //Space Complexity: O(1)
+    public void moveZeroesEfficiently(int[] nums) {
+        // here we will be maintain 2 pointers
+        // left and right
+        // if  value at right(i) is not zero then swap it with left and increment both of them by 1
+        int left = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                int temp = nums[left];
+                nums[left] = nums[i];
+                nums[i] = temp;
+                left++;
+            }
+        }
+    }
+
     public static void main(String[] args) {
         MoveZeroes mz = new MoveZeroes();
         int[] nums = new int[] {0,0,1,3,12};
         //int[] nums = new int[] {1,0,1};
         System.out.println("Original array before moving zeroes: "+ Arrays.toString(nums));
-        mz.moveZeroes(nums);
+        //mz.moveZeroes(nums);
+        mz.moveZeroesEfficiently(nums);
         System.out.println("Array after moving zeroes: "+Arrays.toString(nums));
     }
 }
