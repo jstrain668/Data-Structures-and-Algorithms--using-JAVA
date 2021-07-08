@@ -1,32 +1,35 @@
 package interviews.questions;
 
+// Reference: https://leetcode.com/problems/reverse-integer/
+
 public class ReverseInteger {
 
-    //Description: Move each bit of input `n` to bit 0 to test if bit is set or not. Bit is AND with 1. Each bit is
-    //moved by 1 to the right over 32 loops (32 bits in an integer). If bit 0 is set in `n` then bit 0 is set in `ans`
-    // and `ans` shifted to the left.
-    //Time Complexity: O(1) as the 32 iterations is a constant
-    //Space Complexity: O(1)
+    //Description: To reverse the integer, repeatedly divide `n` by 10 until `n` is equal to zero. Every
+    //time `n` divided by 10 use the mod operator to get last digit which is added to the reversed number
+    //Reversed number is multiplied by 10 to reflect each 10's digit.
+    //Used long type to record the answer and then check against overflow or underflow of MAX and MIN
+    //int respectively. If overflow or underflow then return 0, otherwise cast the long to an int.
+    //Time Complexity: O (log n)
+    //Space Complexity: O (1)
+    public int reverse(int n) {
 
-    public int reverseBits(int n){
-        int ans = 0;
-
-        for(int i=0; i<32; i++){
-            ans = ans << 1;
-            if((n & 1) == 1){
-                ans = ans | 1;
-            }
-            n = n >>1;
+        long res = 0;
+        while (n != 0) {
+            res = res * 10 + n % 10;
+            n /= 10;
         }
-        return ans;
+
+        if (res > Integer.MAX_VALUE || res < Integer.MIN_VALUE) {
+            return 0;
+        }
+        return (int) res;
     }
 
     public static void main(String[] args) {
         ReverseInteger ri = new ReverseInteger();
-        int n = 11;
-        int output = ri.reverseBits(n);
-        System.out.println("Binary string value of original number "+n+ " = "+Integer.toBinaryString(n));
-        System.out.println("Integer "+n+" reversed "+output);
-        System.out.println("Binary string value of reversed number "+output+ " = "+Integer.toBinaryString(output));
+        int n = 123;
+        System.out.println("Reverse value of "+n+" = "+ri.reverse(n));
     }
+
+
 }
