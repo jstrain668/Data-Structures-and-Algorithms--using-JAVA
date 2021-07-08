@@ -3,6 +3,7 @@ package interviews.questions;
 import java.util.LinkedList;
 import java.util.Queue;
 
+// Reference: https://leetcode.com/problems/maximum-depth-of-binary-tree/
 public class MaxDepthOfTree {
 
     private TreeNode root = null;
@@ -92,6 +93,7 @@ public class MaxDepthOfTree {
     // is incremented until no more nodes, the queue is empty.
     // Time Complexity: O(n) Visit each node to reach the bottom leaf node
     // Space Complexity: O(n) for the queue
+    // Reference: https://medium.com/@harycane/maximum-depth-of-a-binary-tree-609d129fa571
     public int maxDepthBFS(TreeNode root){
 
         if (root == null){
