@@ -2,12 +2,14 @@ package interviews.questions;
 
 import java.util.Arrays;
 
+//Reference: https://leetcode.com/problems/move-zeroes/
+
 public class MoveZeroes {
 
     // Description: In first loop remove all zeros by swapping zero value with next value in array which
     // is non-zero while incrementing count of all values in array which is non-zero. In second loop start
     // from count to the end of array and set each value to zero
-    // Time Complexity: O(n + n)
+    // Time Complexity: O(n + n) =O(n)
     // Space Complexity: O(1)
     public void moveZeroes(int[] nums){
 
