@@ -1,13 +1,13 @@
 package interviews.questions;
 
-import java.sql.Time;
+//Reference: https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
 
 public class BestTimeBuyAndSellStock {
 
     // Description: Rules buy on [i]th day and sell [i+n] which produces a profit.
-    // Keep on buying and selling to max profit.
-    // Time complexity : O(n)O(n). Single pass.
-    // Space complexity: O(1)O(1). Constant space needed.
+    // Keep on buying and selling to max profit. Only sell when profit to be made
+    // Time complexity : O(n). Single pass.
+    // Space complexity: O(1). Constant space needed.
     public int simpleMaxProfit(int[] prices){
 
         int maxProfit = 0;
