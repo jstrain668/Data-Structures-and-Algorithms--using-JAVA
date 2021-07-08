@@ -2,6 +2,9 @@ package interviews.questions;
 
 public class BitwiseOperations {
 
+    //Reference: https://leetcode.com/problems/sum-of-two-integers/
+    //Time Complexity: O(y)
+    //Space complexity: O(1)
     public int add(int x, int y){
 
         // Iterate till there is no carry
@@ -22,6 +25,16 @@ public class BitwiseOperations {
             y = carry << 1;
         }
         return x;
+    }
+
+    //Recursive solution for adding two numbers without arithmetic operators
+    public int sum(int a, int b)
+    {
+        int s = a ^ b;
+        int carry = a & b;
+
+        if (carry == 0) return s;
+        else return sum(s, carry << 1);
     }
 
     public int subtract(int x, int y){
@@ -46,6 +59,16 @@ public class BitwiseOperations {
             y = borrow << 1;
         }
         return x;
+    }
+
+    //Recursive solution for subtracting two numbers without arithmetic operators
+    public int minus(int a, int b)
+    {
+        int m = a ^ b;
+        int borrow = ~(a) & b;
+
+        if (borrow == 0) return m;
+        else return sum(m, borrow << 1);
     }
 
     public int multiply(int n, int m)
@@ -122,7 +145,9 @@ public class BitwiseOperations {
     public static void main(String[] args) {
         BitwiseOperations bo = new BitwiseOperations();
         System.out.println("Adding two numbers using bitwise operators: "+bo.add(5,5));
+        System.out.println("Adding two numbers using bitwise operators: "+bo.sum(5,5));
         System.out.println("Subtracting two numbers using bitwise operators: "+bo.subtract(5,5));
+        System.out.println("Subtracting two numbers using bitwise operators: "+bo.minus(5,5));
         int bit = 7;
         int target = 128;
         System.out.println("Clear bit: "+bit+ " in target "+target+ " produces value: "+bo.clearBit(target,bit));
