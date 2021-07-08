@@ -3,6 +3,8 @@ package interviews.questions;
 import java.util.Arrays;
 import java.util.HashSet;
 
+//Reference: https://leetcode.com/problems/single-number/
+
 public class SingleNumber {
 
     // Description: Can assume there is one unique number in the nums array.
