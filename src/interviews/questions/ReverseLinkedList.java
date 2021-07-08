@@ -3,6 +3,8 @@ package interviews.questions;
 import java.util.ArrayList;
 import java.util.List;
 
+//Reference: https://leetcode.com/problems/reverse-linked-list/
+
 public class ReverseLinkedList {
 
     private ListNode head;
