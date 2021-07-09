@@ -3,7 +3,22 @@ package interviews.questions;
 import java.util.ArrayList;
 import java.util.List;
 
+//Reference: https://leetcode.com/problems/pascals-triangle/
+
 public class PascalsTriangle {
+
+
+    //Description: First, we generate the overall triangle list, which will store each row as a sublist.
+    //Then, we check for the special case of 0, as we would otherwise return [1]. Since numRows is always
+    // greater than 0, we can initialize triangle with [1] as its first row, and proceed to fill the rows
+    // as follows:
+    // First and last elements in each row = 1
+    // The other elements are equal to the sum of the adjacent elements to the left of the previous row
+    // Time Complexity: O(numRows to the power of 2) The outer loop obviously runs numRowsnumRows times,
+    // but for each iteration of the outer loop, the inner loop runs rowNum times. Therefore, the overall
+    // number of triangle updates that occur is 1 + 2 + 3 + ... + numRows which, according to Gauss'
+    // formula numRows(numRows + 1) /2
+    // Space Complexity: O(numRows to the power of 2)
 
     public List<List<Integer>> generate(int numRows) {
         List<List<Integer>> triangle = new ArrayList<List<Integer>>();
