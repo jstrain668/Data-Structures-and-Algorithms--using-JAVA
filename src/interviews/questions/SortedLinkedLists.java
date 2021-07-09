@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+//Reference: https://leetcode.com/problems/merge-two-sorted-lists/
+
 public class SortedLinkedLists {
 
     ListNode head;
@@ -130,6 +132,53 @@ public class SortedLinkedLists {
         }
     }
 
+    public ListNode mergeSortedLists(ListNode slNode1, ListNode slNode2){
+
+        // if both lists are empty then merged list is also empty
+        if (slNode1 == null && slNode2 == null){
+            return null;
+        }
+
+        // if one of the lists is empty then other is the merged list
+        if (slNode1 == null) {
+            return slNode2;
+        } else if (slNode2 == null) {
+            return slNode1;
+        }
+
+        ListNode mergedHead = null;
+
+        if (slNode1.val < slNode2.val){
+            mergedHead = slNode1;
+            slNode1 = slNode1.next;
+        } else{
+            mergedHead = slNode2;
+            slNode2 = slNode2.next;
+        }
+
+        ListNode tailMerged = mergedHead;
+
+        while (slNode1 != null && slNode2 != null){
+            if (slNode1.val < slNode2.val){
+                tailMerged.next = slNode1;
+                tailMerged = slNode1;
+                slNode1 = slNode1.next;
+            } else {
+                tailMerged.next = slNode2;
+                tailMerged = slNode2;
+                slNode2 = slNode2.next;
+            }
+        }
+
+        if (slNode1 != null){
+            tailMerged.next = slNode1;
+        } else if (slNode2 != null){
+            tailMerged.next = slNode2;
+        }
+
+        return mergedHead;
+    }
+
     public static void main(String[] args) {
         SortedLinkedLists sll1 = new SortedLinkedLists();
         int[] nums1 = new int[] {1,2,4};
@@ -141,6 +190,17 @@ public class SortedLinkedLists {
 
         ListNode mergedListHead = sll1.mergeTwoLists(sortedListHead1, sortedListHead2);
         sll1.printSortedLinkedList(mergedListHead);
+
+        SortedLinkedLists sll3 = new SortedLinkedLists();
+        int[] nums3 = new int[] {1,2,4};
+        ListNode sortedListHead3 = sll3.buildList(nums3);
+
+        SortedLinkedLists sll4 = new SortedLinkedLists();
+        int[] nums4 = new int[] {1,3,4};
+        ListNode sortedListHead4 = sll4.buildList(nums4);
+
+        ListNode mergedListHead2 = sll3.mergeSortedLists(sortedListHead3, sortedListHead4);
+        sll1.printSortedLinkedList(mergedListHead2);
 
     }
 }
