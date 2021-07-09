@@ -2,8 +2,8 @@ package interviews.questions;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
+//Reference: https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
 
 public class HeightBalancedBST {
 
@@ -115,11 +115,38 @@ public class HeightBalancedBST {
         return true;
     }
 
+    //Description: Use Binary search algorithm to create BST
+    //1) Get the Middle of the array and make it root.
+    //2) Recursively do same for left half and right half.
+    //      a) Get the middle of left half and make it left child of the root
+    //          created in step 1.
+    //      b) Get the middle of right half and make it right child of the
+    //          root created in step 1.
+    // Time Complexity: O(n) = 2T(n/2) + c
+    // Space Complexity: O(n) - system stack
+
+    public TreeNode convertToBST(int[] nums, int left, int right){
+
+        //Base condition to exit recursive loop
+        if (left > right){
+            return null;
+        }
+
+        int mid = left + (right - left) / 2;
+
+        TreeNode node = new TreeNode(nums[mid]);
+        node.left = convertToBST(nums, left,mid-1);
+        node.right = convertToBST(nums,mid+1,right);
+
+        return node;
+    }
+
     public TreeNode sortedArrayToBST(int[] nums){
           if (!isSorted(nums)){
               Arrays.sort(nums);
           }
-          return convert(nums,0,nums.length-1,null);
+          //return convert(nums,0,nums.length-1,null);
+          return convertToBST(nums,0,nums.length-1);
     }
 
     public void constructFromArray(){
