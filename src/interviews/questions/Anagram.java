@@ -1,9 +1,9 @@
 package interviews.questions;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
+
+//Reference: https://leetcode.com/problems/valid-anagram/
 
 public class Anagram {
 
@@ -15,6 +15,13 @@ public class Anagram {
     // Auxillary space of O(n).
     // https://csjobinterview.wordpress.com/2012/03/21/check-if-two-strings-are-anagrams/
     public boolean isAnagramWithHashMap(String s, String t){
+
+        if (s == null || t == null)
+            throw new IllegalArgumentException("Null string passed");
+
+        if (s.length() != t.length())
+            return false;
+
         HashMap<Character,Integer> aMap = new HashMap<>();
 
         for (int i=0; i < s.length(); i++){
