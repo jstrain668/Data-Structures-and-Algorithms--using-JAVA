@@ -29,6 +29,10 @@ public class IntersectionOfArrays {
     //Q2: What if nums1's size is small compared to nums2's size? Which algorithm is better?
     //A2: The sorting solution has a bigger dominant term compared to the hashmap solution O(n1 log n1)
     // + O(n2 log n2) + O(n1 + n2) +O(r) versus O(n1) + O(n2) +O(r)
+    //Q3: What if elements of nums2 are stored on disk, and the memory is limited such that you cannot
+    //load all elements into the memory at once?
+    //A3: Divide and conquer. Repeat the process frequently: Slice nums2 to fit into memory, process
+    // (calculate intersections), and write partial results to memory
     public int[] intersect(int[] nums1, int[] nums2){
 
         if (nums1 == null || nums2 == null || nums1.length == 0 || nums2.length ==0){
