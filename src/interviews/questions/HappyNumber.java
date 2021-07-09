@@ -2,6 +2,8 @@ package interviews.questions;
 
 import java.util.HashSet;
 
+// Reference: https://leetcode.com/problems/merge-two-sorted-lists/
+
 public class HappyNumber {
 
     //To sum the squares of each digit in a number. Each digit in the number is attained by dividing by 10
@@ -45,7 +47,7 @@ public class HappyNumber {
 
     public static void main(String[] args) {
         HappyNumber hn = new HappyNumber();
-        int n1 = 21;
+        int n1 = 89;
         System.out.println("Is "+n1+" a happy number: "+hn.isHappy(n1));
     }
 }
