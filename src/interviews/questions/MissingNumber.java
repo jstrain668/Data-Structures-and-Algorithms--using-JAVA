@@ -1,9 +1,8 @@
 package interviews.questions;
 
-import BigO.example.MaximumSubArray;
-
-import java.util.ArrayList;
 import java.util.Arrays;
+
+//Reference: https://leetcode.com/problems/missing-number/
 
 public class MissingNumber {
 
@@ -62,6 +61,23 @@ public class MissingNumber {
         return n;
     }
 
+    public int missingNumberGauss(int[] nums){
+
+        if (nums == null || nums.length==0){
+            throw new IllegalArgumentException("Null or empty array not allowed");
+        }
+
+        int n = nums.length;
+        int gaussTotal = n * (n + 1) / 2;
+
+        int total = 0;
+        for (int i=0; i < n; i++){
+            total += nums[i];
+        }
+
+        return gaussTotal - total;
+    }
+
     public static void main(String[] args) {
         MissingNumber mn = new MissingNumber();
         int[] nums1 = new int[] {3,0,1};
@@ -69,8 +85,9 @@ public class MissingNumber {
         int[] nums3 = new int[] {9,6,4,2,3,5,7,0,1};
         int[] nums4 = new int[] {0};
 
-        System.out.println("Source int array: "+ Arrays.toString(nums2));
-        System.out.println("Missing number from source array: "+ mn.missingNumber(nums2));
-        System.out.println("Missing number from source array: "+ mn.missingNumberUsingGauss(nums2));
+        System.out.println("Source int array: "+ Arrays.toString(nums3));
+        System.out.println("Missing number from source array: "+ mn.missingNumber(nums3));
+        System.out.println("Missing number from source array: "+ mn.missingNumberUsingGauss(nums3));
+        System.out.println("Missing number from source array: "+ mn.missingNumberGauss(nums3));
     }
 }
