@@ -1,6 +1,6 @@
 package interviews.questions;
 
-import BigO.example.MaximumSubArray;
+//Reference: https://leetcode.com/problems/maximum-subarray/
 
 import java.util.Arrays;
 
