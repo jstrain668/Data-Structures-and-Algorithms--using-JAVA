@@ -1,5 +1,7 @@
 package interviews.questions;
 
+//Reference: https://leetcode.com/problems/number-of-1-bits/
+
 public class NumberOf1Bits {
 
 
@@ -25,6 +27,25 @@ public class NumberOf1Bits {
             mask <<= 1;
         }
         return bitCount;
+    }
+
+    //Repeatedly flip the least-significant 1-bit of the number to 0, and add 1 to the sum. As soon
+    //as the number becomes 0, we know that it does not have any more 1-bits, and we return the sum.
+    //In the binary representation, the least significant 1-bit in nn always corresponds to a 0-bit in
+    //n−1. Therefore, anding the two numbers n and n - 1 always flips the least significant 1-bit in n
+    //to 0, and keeps all other bits the same.
+    //Time Complexity: O(1)
+    //Space Complexity: O(1)
+    public int hammingWeightAlt(int n) {
+
+        int sum = 0;
+
+        while (n != 0){
+
+            sum++;
+            n &= (n-1);
+        }
+        return sum;
     }
 
     public static void main(String[] args) {
