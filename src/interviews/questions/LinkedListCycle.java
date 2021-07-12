@@ -2,6 +2,8 @@ package interviews.questions;
 
 import java.util.HashSet;
 
+//Reference: https://leetcode.com/problems/linked-list-cycle/
+
 public class LinkedListCycle {
 
     ListNode head;
