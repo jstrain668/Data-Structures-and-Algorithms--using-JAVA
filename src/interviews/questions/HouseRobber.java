@@ -2,6 +2,8 @@ package interviews.questions;
 
 import java.util.Arrays;
 
+//Reference: https://leetcode.com/problems/house-robber/
+
 public class HouseRobber {
 
     //Description: Max loot for robbing houses is a choice between robbing ith or ith house plus ith
