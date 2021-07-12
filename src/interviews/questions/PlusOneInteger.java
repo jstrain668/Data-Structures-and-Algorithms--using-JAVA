@@ -2,6 +2,8 @@ package interviews.questions;
 
 import java.util.Arrays;
 
+//Reference: https://leetcode.com/problems/plus-one/
+
 public class PlusOneInteger {
     // Description: Process the addition of one to the least significant digit which is the last element
     // in the array. If the least significant digit (last element in the array) is not 9 then break out
@@ -37,9 +39,41 @@ public class PlusOneInteger {
         return digits;
     }
 
+    //Description: Convert digits into a string, by appending each digit in the int array into a
+    //StringBuffer and then convert into an integer. Increment integer by 1. Create a new int[] array
+    //if number of digits greater than length of original array. Convert integer into string and process
+    // each character as a digit to be inserted into array
+    // Time Complexity: O(n + n) or O(n + (n+1)) = O(n)
+    // Space Complexity: O(1) however in worst case O(n) for new array
+    public int[] plusOneAlt(int[] digits){
+        if (digits == null || digits.length == 0){
+            throw new IllegalArgumentException("Null or empty array passed");
+        }
+
+        StringBuffer sb = new StringBuffer();
+        for (int i=0; i < digits.length; i++){
+            sb.append(digits[i]);
+        }
+
+        Integer num = Integer.valueOf(sb.toString());
+        num++;
+        String number = String.valueOf(num);
+        if (number.length() > digits.length) {
+            digits = new int[number.length()];
+        }
+
+        for (int i=0; i <number.length(); i++){
+            digits[i] = number.charAt(i) - '0';
+        }
+
+        return digits;
+    }
+
     public static void main(String[] args) {
         PlusOneInteger poi = new PlusOneInteger();
-        int[] digits = {0};
+        int[] digits = {1,2,3};
         System.out.println("Add one to source array: "+ Arrays.toString(digits)+" is "+Arrays.toString(poi.plusOne(digits)));
+        digits = new int[] {1,2,3};
+        System.out.println("Add one to source array: "+ Arrays.toString(digits)+" is "+Arrays.toString(poi.plusOneAlt(digits)));
     }
 }
