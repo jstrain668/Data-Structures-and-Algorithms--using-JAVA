@@ -2,8 +2,15 @@ package interviews.questions;
 
 import java.util.Arrays;
 
+//Reference: https://leetcode.com/problems/remove-duplicates-from-sorted-array/
+
+//Note: Another poorly stated question.
+
 public class RemoveDuplicatesFromSortedArray {
 
+    //Description: Duplicates are not removed, but moved to the end of the array.
+    //Time Complexity: O(n)
+    //Space Complexity: O(1)
     public int removeDuplicates(int[] nums)
     {
         if (nums == null || nums.length == 0) {
