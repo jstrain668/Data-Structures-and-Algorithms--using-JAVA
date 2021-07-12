@@ -2,7 +2,52 @@ package interviews.questions;
 
 import java.util.Stack;
 
+//Reference: https://leetcode.com/problems/valid-parentheses/
+
 public class ValidParentheses {
+
+    public boolean isValid2(String s) {
+
+        if (s == null || s.length() == 0 || s.length() == 1) {
+            return false;
+        }
+
+        Stack<Character> stack = new Stack<>();
+
+        for (int i=0; i < s.length(); i++){
+            char c = s.charAt(i);
+
+            if (c == '(' || c == '{' || c == '['){
+                stack.push(c);
+            } else{
+
+                if (stack.empty()){
+                    return false;
+                }
+
+                switch (c) {
+                    case ')':
+                        if (stack.pop() != '('){
+                            return false;
+                        }
+                        break;
+                    case '}':
+                        if (stack.pop() != '{'){
+                            return false;
+                        }
+                        break;
+                    case ']':
+                        if (stack.pop() != '['){
+                            return false;
+                        }
+                        break;
+                    default:
+                        return false;
+                }
+            }
+        }
+        return stack.empty();
+    }
 
     //Description: For the string of parentheses {([])} to be valid each bracket requires a corresponding
     //bracket. Use a Stack structure to resolve this challenge - LIFO. Each opening bracket is pushed onto
@@ -62,6 +107,7 @@ public class ValidParentheses {
         String str1= "([)]";
         String str2 = "[";
         String str3 = "((";
-        System.out.println("String "+str3+" is valid: "+vp.isValid(str3));
+        System.out.println("String "+str1+" is valid: "+vp.isValid(str1));
+        System.out.println("String "+str1+" is valid: "+vp.isValid2(str1));
     }
 }
