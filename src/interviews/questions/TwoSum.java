@@ -3,6 +3,8 @@ package interviews.questions;
 import java.util.Arrays;
 import java.util.HashMap;
 
+//Reference:https://leetcode.com/problems/two-sum/
+
 public class TwoSum {
 
     // Description: Store all the unique numbers plus corresponding array index in a hashmap. To determine
@@ -68,6 +70,7 @@ public class TwoSum {
             if (srcMap.containsKey(keyValue)){
                 result[0] = i;
                 result[1] = srcMap.get(keyValue);
+                break;
             } else {
                 srcMap.put(difference,i);
             }
@@ -75,6 +78,28 @@ public class TwoSum {
         return result;
     }
 
+    public int[] twoSum2(int[] nums, int target) {
+
+        if (nums == null || nums.length < 2) {
+            throw new IllegalArgumentException("Null array or array size less than 2 not allowed");
+        }
+
+        int[] output = new int[2];
+        HashMap<Integer,Integer> hashMap = new HashMap<>();
+
+        for (int i=0; i < nums.length; i++){
+
+            int difference = target - nums[i];
+            if (hashMap.containsKey(difference)){
+                output[0] = i;
+                output[1] = hashMap.get(difference);
+                break;
+            }
+            hashMap.put(nums[i],i);
+        }
+
+        return output;
+    }
     public static void main(String[] args) {
         TwoSum ts = new TwoSum();
         int[] nums1 = {2,7,11,15};
@@ -84,5 +109,6 @@ public class TwoSum {
         System.out.println("Source array: "+ Arrays.toString(nums3)+ " and target value: "+target);
         System.out.println("Target values: "+Arrays.toString(ts.twoSum(nums3,target)));
         System.out.println("Target values: "+Arrays.toString(ts.findPairWithSum(nums3,target)));
+        System.out.println("Target values: "+Arrays.toString(ts.twoSum2(nums3,target)));
     }
 }
