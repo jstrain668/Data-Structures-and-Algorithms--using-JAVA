@@ -1,5 +1,9 @@
 package interviews.questions;
 
+//Reference: https://leetcode.com/problems/count-and-say/
+
+//Difficult question to follow. Not my solution that follows
+
 public class CountAndSay {
 
     public String countAndSay(int n) {
