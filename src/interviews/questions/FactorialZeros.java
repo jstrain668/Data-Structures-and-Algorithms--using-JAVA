@@ -44,7 +44,7 @@ public class FactorialZeros {
 
     public static void main(String[] args) {
         FactorialZeros fz = new FactorialZeros();
-        int n = 25;
+        int n = 20;
         System.out.println("Number of trailing zeros in "+n+" factorial is: "+fz.bfTrailingZeroes(n));
         System.out.println("Number of trailing zeros in "+n+" factorial is: "+fz.trailingZeroes(n));
     }
