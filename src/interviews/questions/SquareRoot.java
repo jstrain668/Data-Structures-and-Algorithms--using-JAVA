@@ -1,5 +1,7 @@
 package interviews.questions;
 
+//Reference: https://leetcode.com/problems/sqrtx/
+
 public class SquareRoot {
 
     //Description: The Newton Iteration is a mathematical approach that finds optimal answers for square root
@@ -83,10 +85,36 @@ public class SquareRoot {
 
     }
 
+    public int mySqrt2(int x){
+
+        if (x < 0){
+            throw new IllegalArgumentException("Negative number not allowed");
+        }
+
+        if (x == 0 || x==1){
+            return x;
+        }
+
+        double precision = 0.0001;
+        double squareRoot = x / 2;
+        double temp;
+
+        while (true){
+            temp = squareRoot;
+            squareRoot = (temp + (x/temp)) / 2;
+
+            if (((temp - squareRoot)) < precision){
+                break;
+            }
+        }
+
+        return (int) Math.floor(squareRoot);
+    }
     public static void main(String[] args) {
         SquareRoot sr = new SquareRoot();
         int x = 10;
-        System.out.println("Square root of "+x+ " = "+sr.mySqrt(x));
+        System.out.println("Square root of "+x+ " = "+sr.mySqrt2(x));
+        System.out.println("Square root of "+x+ " = "+sr.mySqrt2(x));
         System.out.println("Square root of "+x+ " = "+sr.binSearchSqRoot(x));
     }
 }
