@@ -1,5 +1,7 @@
 package interviews.questions;
 
+//Reference: https://leetcode.com/problems/longest-common-prefix/
+
 import java.util.Arrays;
 
 // Another solution would be the divide and conquer approach similar in approach to merge sort.
@@ -123,13 +125,62 @@ public class LongestCommonPrefix {
         return strs[0].substring(0, i);
     }
 
+    public int smallestStrIndex(String[] strs){
+
+        int minLen = Integer.MAX_VALUE;
+        int index = 0;
+
+        for (int i=0; i < strs.length; i++){
+            if (strs[i].length() < minLen){
+                minLen = strs[i].length();
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    //Description: First find the candidate prefix to match against all strings. This will be the
+    //smallest string in the array of Strings. Set the prefix string to the smallest string. Loop
+    //through each string matching the candidate prefix, starting at index zero of each string. If
+    //there is no match found (String.indexOf returns non zero) the candidate prefix is reduced by one
+    //character. Remove character from end of string. Continue until no match is found - prefix is
+    //empty string or match is found and return prefix.
+    //Time Complexity: O() = O(s) where is the number of strings + O(s*m*n) where n and m are the length of the
+    //search string and prefix respectively.
+    public String longestCommonPrefix2(String[] strs) {
+
+        int size = strs.length;
+
+        /* if size is 0, return empty string */
+        if (size == 0)
+            return "";
+
+        // Only one string, the string itself will be longest common prefix
+        if (size == 1)
+            return strs[0];
+
+        String prefix = strs[smallestStrIndex(strs)];
+
+        for (int i=0; i < strs.length; i++){
+            while (strs[i].indexOf(prefix) != 0){
+                prefix = prefix.substring(0,prefix.length()-1);
+                if (prefix.isEmpty()){
+                    return "";
+                }
+            }
+        }
+        return prefix;
+    }
+
     public static void main(String[] args) {
         LongestCommonPrefix lcp = new LongestCommonPrefix();
-        String[] strings = {"flower","flow","flo","flight"};
+        String[] strings = {"flower","flow","flight"};
         String[] input = {"geeksforgeeks", "geeks", "geek", "geezer"};
-        System.out.println("Source strings are: "+ Arrays.toString(strings));
         System.out.println("Source strings are: "+ Arrays.toString(input));
-        System.out.println("Longest common prefix: "+ lcp.longestCommonPrefixUsingSort(strings));
-        System.out.println("Longest common prefix: "+ lcp.longestCommonPrefix(strings));
+        System.out.println("Source strings are: "+ Arrays.toString(input));
+        System.out.println("Longest common prefix: "+ lcp.longestCommonPrefixUsingSort(input));
+        System.out.println("Longest common prefix: "+ lcp.longestCommonPrefix(input));
+        input = new String[] {"geeksforgeeks", "geeks", "geek", "geezer"};
+        System.out.println("Longest common prefix: "+ lcp.longestCommonPrefix2(input));
     }
 }
