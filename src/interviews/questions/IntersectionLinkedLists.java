@@ -1,11 +1,10 @@
 package interviews.questions;
 
-import data_structures.linked_lists.linked_list_implementation.LinkedList;
+//Reference: https://leetcode.com/problems/intersection-of-two-linked-lists/
 
-import java.util.HashMap;
 import java.util.HashSet;
 
-public class IntersectionLinkedLists {
+public class  IntersectionLinkedLists {
 
     ListNode head;
     ListNode tail;
