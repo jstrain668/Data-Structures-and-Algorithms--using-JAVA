@@ -2,6 +2,7 @@ package interviews.questions;
 
 import java.util.Stack;
 
+//Reference: https://leetcode.com/problems/min-stack/
 
 // Description: Use two stacks, one stack executes the per se stack functions and the min stack which
 // always keeps the min value at the top of the minStack. When pushing to the minStack, the value is pushed
@@ -29,6 +30,18 @@ public class MinStack {
         }
     }
 
+    public void push2(int val) {
+
+        stack.push(val);
+
+        if (minStack.isEmpty()) {
+            minStack.push(val);
+        } else {
+            int currentMin = minStack.peek();
+            minStack.push(Math.min(currentMin,val));
+        }
+    }
+
     public void pop() {
 
         if (!stack.isEmpty() && !minStack.isEmpty()){
@@ -48,9 +61,9 @@ public class MinStack {
 
     public static void main(String[] args) {
         MinStack minStack = new MinStack();
-        minStack.push(-2);
-        minStack.push(0);
-        minStack.push(-3);
+        minStack.push2(-2);
+        minStack.push2(0);
+        minStack.push2(-3);
         System.out.println("Current min stack: "+minStack.getMin()); // return -3
         minStack.pop();
         System.out.println("Current top of stack: "+minStack.top()); // return 0
