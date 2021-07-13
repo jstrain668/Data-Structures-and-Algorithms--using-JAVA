@@ -1,5 +1,7 @@
 package interviews.questions;
 
+//Reference: https://leetcode.com/problems/implement-strstr/
+
 public class StrStr {
 
     //Description: Use String indexOf method to find first occurrence of need in haystack.
@@ -22,15 +24,30 @@ public class StrStr {
     // Time Complexity: O(n)
     // Space Complexity: O(1)
     public int strStr(String haystack, String needle) {
-        if(needle.length()==0) {
+
+        if (haystack == null || needle == null || haystack.length() == 0){
+            return -1;
+        }
+
+        if (needle.isEmpty()){
             return 0;
         }
 
-        for(int i = 0; i <= (haystack.length()-needle.length()); i++){
-            if(haystack.substring(i, i+needle.length()).equals(needle)) {
+        int hsLen = haystack.length();
+        int needleLen = needle.length();
+
+        if (needleLen > hsLen){
+            return -1;
+        }
+
+        int threshold = hsLen - needleLen;
+
+        for (int i=0; i <= threshold; i++){
+            if (haystack.substring(i,i+needleLen).equals(needle)){
                 return i;
             }
         }
+
         return -1;
     }
 
