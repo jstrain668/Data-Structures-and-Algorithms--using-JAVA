@@ -1,7 +1,8 @@
 package interviews.questions;
 
-
 import java.util.Arrays;
+
+//Reference:https://leetcode.com/problems/count-primes/
 
 public class CountPrimes {
 
@@ -85,11 +86,29 @@ public class CountPrimes {
         return result;
     }
 
+    public int countPrimes4(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("Negative number passed");
+        }
+
+        if (n < 2 && n >= 0) {
+            return 0;
+        }
+        int count = 0;
+
+        for (int i=2; i < n; i++){
+            if (isPrime(i)){
+                count++;
+            }
+        }
+        return count;
+    }
     public static void main(String[] args) {
         CountPrimes cp = new CountPrimes();
         int n = 10;
         System.out.println("Number of primes up to "+n+ " equals "+cp.countPrimes(n));
         System.out.println("Number of primes up to "+n+ " equals "+cp.countPrimes3(n));
+        System.out.println("Number of primes up to "+n+ " equals "+cp.countPrimes4(n));
     }
 
 
