@@ -23,7 +23,7 @@ public class RotateArray {
         }
 
         if (k < 0){
-            throw new IllegalArgumentException("Rotate value cannot be empty");
+            throw new IllegalArgumentException("Rotate value cannot be negative");
         }
 
         int arrayLen = nums.length;
@@ -108,6 +108,30 @@ public class RotateArray {
         }
     }
 
+    public int rotateTo(int i, int arrayLen, int rotateLen){
+        return (i + rotateLen) % arrayLen;
+    }
+    public void rotateK2(int[] nums, int k){
+        if (nums == null || nums.length == 0){
+            throw new IllegalArgumentException("Passed null or empty array");
+        }
+
+        if (nums.length == 1 || k == 0){
+            return;
+        }
+
+        HashMap<Integer,Integer> store = new HashMap<>();
+
+        for (int i=0; i < nums.length; i++){
+            store.put(i,nums[i]);
+        }
+
+        for (int i=0; i < nums.length; i++){
+            int destIndex = rotateTo(i,nums.length,k);
+            nums[destIndex] = store.get(i);
+        }
+    }
+
     public static void main(String[] args) {
         RotateArray ra = new RotateArray();
         int[] nums = {1,2,3,4,5,6,7};
@@ -132,5 +156,10 @@ public class RotateArray {
         System.out.println("Source array: "+ Arrays.toString(nums2));
         ra.rightRotate(nums2,2);
         System.out.println("Rotate array: "+ Arrays.toString(nums2));
+
+        nums = new int[] {1,2,3,4,5,6,7};
+        System.out.println("Rotate array: "+ Arrays.toString(nums));
+        ra.rotateK2(nums,3);
+        System.out.println("Rotate array: "+ Arrays.toString(nums));
     }
 }
