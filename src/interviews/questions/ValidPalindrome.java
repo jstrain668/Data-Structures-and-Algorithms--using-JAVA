@@ -95,11 +95,48 @@ public class ValidPalindrome {
 
         return true;
     }
+
+    public boolean isPalindrome3(String s) {
+
+        if (s == null || s.length() == 0) {
+            throw new IllegalArgumentException("Null or empty string passed");
+        }
+
+        if (s.length() == 1) {
+            return true;
+        }
+
+        s = s.toLowerCase();
+        int startInd = 0;
+        int endInd = s.length() -1;
+
+        while (startInd <= endInd){
+
+            if (!alphaNumeric(s.charAt(startInd))){
+                startInd++;
+                continue;
+            }
+
+            if (!alphaNumeric(s.charAt(endInd))){
+                endInd--;
+                continue;
+            }
+
+            if ((s.charAt(startInd)) != s.charAt(endInd)){
+                return false;
+            }
+            startInd++;
+            endInd--;
+        }
+        return true;
+    }
     public static void main(String[] args) {
         ValidPalindrome vp = new ValidPalindrome();
         String str = "A man, a plan, a canal: Panama";
+        String sss = "A man, a plan, a canal: Panama";
         System.out.println("Source string: "+str);
         System.out.println("String is a valid palindrome: "+vp.isPalindrome(str));
         System.out.println("String is a valid palindrome: "+vp.isPalindrome2(str));
+        System.out.println("String is a valid palindrome: "+vp.isPalindrome3(str));
     }
 }
