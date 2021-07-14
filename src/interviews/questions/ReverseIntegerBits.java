@@ -1,5 +1,7 @@
 package interviews.questions;
 
+//Reference: https://leetcode.com/problems/reverse-bits/
+
 public class ReverseIntegerBits {
 
     //Description: Move each bit of input `n` to bit 0 to test if bit is set or not. Bit is AND with 1. Each bit is
