@@ -60,15 +60,24 @@ public class ReverseInteger {
     //Space Complexity: O(1)
     public int reverse3(int n) {
 
+        long res = 0;
         String reversed = new StringBuilder().append(Math.abs(n)).reverse().toString();
 
-        long res = Long.parseLong(reversed);
+       // if (reversed.charAt(0) == '0'){
+       //     reversed = reversed.substring(1);
+       // }
+
+        try {
+            res = Long.parseLong(reversed);
+        } catch (NumberFormatException nfe){
+            System.out.println(nfe.toString());
+        }
 
         if (n < 0){
             res *= -1;
         }
 
-        if (res > Integer.MAX_VALUE || res < Integer.MAX_VALUE){
+        if (res > Integer.MAX_VALUE || res < Integer.MIN_VALUE){
             return 0;
         }
 
