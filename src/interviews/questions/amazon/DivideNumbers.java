@@ -2,8 +2,6 @@ package interviews.questions.amazon;
 
 //Reference: https://leetcode.com/problems/divide-two-integers/
 
-import org.assertj.core.internal.bytebuddy.jar.asm.Handle;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
