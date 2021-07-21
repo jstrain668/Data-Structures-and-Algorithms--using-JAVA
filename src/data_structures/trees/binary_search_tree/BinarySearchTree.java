@@ -230,7 +230,7 @@ public class BinarySearchTree {
         System.out.println("dfs preOrder: " + bst.DFSPreOrder());
         System.out.println("dfs postOrder: " + bst.DFSPostOrder());
 
-        bst.remove(20);
+        bst.remove(9);
         System.out.println("look for 20 after removing 20: " + bst.lookup(20));
     }
 }
