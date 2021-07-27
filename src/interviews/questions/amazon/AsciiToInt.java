@@ -30,12 +30,15 @@ public class AsciiToInt {
         if (number.charAt(0) == '-'){
             sign = -1;
             startIndex = 1;
+        } else if (number.charAt(0) == '+'){
+            sign = 1;
+            startIndex = 1;
         }
 
         for (int i = startIndex; i < number.length(); i++){
 
-            if (number.charAt(i) == '-'){
-                sign = -1;
+            if (number.charAt(i) == ' '){
+                continue;
             } else {
                 char ch = number.charAt(i);
                 if (!Character.isDigit(ch)) {
@@ -50,7 +53,7 @@ public class AsciiToInt {
 
     public static void main(String[] args) {
         AsciiToInt asciiToInt = new AsciiToInt();
-        String number = " 1234";
+        String number = "- 12  34";
         System.out.println("Number string :"+number+" as int: "+asciiToInt.atoi2(number));
     }
 }
