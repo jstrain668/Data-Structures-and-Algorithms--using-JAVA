@@ -23,7 +23,7 @@ public class AsciiToInt {
             throw new IllegalArgumentException("Cannot pass null or empty string");
         }
         number = number.trim();
-        int numericValue = 0;
+        long numericValue = 0;
         int sign = 1;
         int startIndex = 0;
 
@@ -48,12 +48,19 @@ public class AsciiToInt {
                 }
             }
         }
-        return numericValue * sign;
+
+        if ((numericValue * sign) > Integer.MAX_VALUE){
+            return Integer.MIN_VALUE;
+        } else if ((numericValue * sign) < Integer.MIN_VALUE){
+            return Integer.MAX_VALUE;
+        }
+
+        return (int) numericValue * sign;
     }
 
     public static void main(String[] args) {
         AsciiToInt asciiToInt = new AsciiToInt();
-        String number = "- 12  34";
+        String number = "123456546754";
         System.out.println("Number string :"+number+" as int: "+asciiToInt.atoi2(number));
     }
 }
