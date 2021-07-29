@@ -87,7 +87,7 @@ public class MergeNSortedLists {
 
     //Description: Convert merge n lists problem to merge 2 lists (n-1) times.
     //Following the concept of merging two lists, we can merge all the k lists taking two lists at a time.
-    //Time Complexity: O(nN)(How?) where k is the number of linked lists.
+    //Time Complexity: O(nN)(How?) where N is the number of linked lists.
     //We can merge two sorted linked lists in O(n) time where n is the total number of nodes in two lists.
     //Time Complexity: merge two sorted linked list in O(1) space
 
@@ -116,8 +116,9 @@ public class MergeNSortedLists {
     //Traverse all the linked lists and collect the values of the nodes into an array.
     //Sort and iterate over this array to get the proper value of nodes.
     //Create a new sorted linked list and extend it with the new nodes.
-    // Time complexity: O(NlogN) where N is the total number of nodes. Collecting all the values costs O(N) time.
-    // Space Complexity: O(N). Creating a new linked list costs O(N) space. Also creating arraylist to store all elements
+    // Time complexity: O(Nlogn) where n is the total number of nodes and N number of lists. Collecting all the values
+    // costs O(N) time.
+    // Space Complexity: O(n). Creating a new linked list costs O(n) space. Also creating arraylist to store all elements
     // from n sorted linked lists into one array list. O(2n) but drop the constant to give O(n)
 
     public ListNode bfMergeNLists(ListNode[] lists) {
