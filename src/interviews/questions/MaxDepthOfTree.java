@@ -64,9 +64,10 @@ public class MaxDepthOfTree {
         }
     }
 
-    // Description: Recursively traverse left and right tree to record depth level. Traverse subtrees until leaf
-    // node (null) is reached. Repeat until all subtrees are traversed the depth of left and right subtrees
-    // from root.
+    // Description: The idea is to traverse the tree in a postorder fashion and calculate the height of the left and
+    // right subtree. The height of a subtree rooted at any node will be one more than the maximum height of its left
+    // and right subtree. Recursively apply this property to all tree nodes in a bottom-up manner (postorder fashion)
+    // and return the subtree max height rooted at that node.
     // Time Complexity: O(n) - traverse all nodes to find the deepest path
     // Space Complexity: O(n) - the space cost incurred on the stack size because of recursion calls.
     // https://www.educative.io/edpresso/finding-the-maximum-depth-of-a-binary-tree
@@ -87,11 +88,44 @@ public class MaxDepthOfTree {
             return  leftDepth + 1;
     }
 
-    // Description: Using BFS (iterative) for each level to increase the depth value. At the end of the
+    public int maxDepthIterative(TreeNode root) {
+
+        if (root == null) {
+            return 0;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(root);
+        int depthLevel = 0;
+
+        while (!queue.isEmpty()){
+
+            depthLevel++;
+            for (int i=0; i < queue.size(); i++){
+                TreeNode node = queue.peek();
+
+                if (node.left != null){
+                    queue.add(node.left);
+                }
+
+                if (node.right != null){
+                    queue.add(node.right);
+                }
+
+                queue.poll();
+            }
+
+        }
+
+        return depthLevel;
+    }
+
+
+    // Description: Using BFS (iterative) to perform level order traversal of the tree. At the end of the
     // traversal both left and right pointers are null return depth value
     // Use Queue, each level node(s) are added and previous removed. With each iteration the depth level
     // is incremented until no more nodes, the queue is empty.
-    // Time Complexity: O(n) Visit each node to reach the bottom leaf node
+    // Time Complexity: O(n) Visit each node to reach the bottom (leaf nodes)
     // Space Complexity: O(n) for the queue
     // Reference: https://medium.com/@harycane/maximum-depth-of-a-binary-tree-609d129fa571
     public int maxDepthBFS(TreeNode root){
