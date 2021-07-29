@@ -164,6 +164,7 @@ public class MaxDepthOfTree {
         mdt.insert(15);
         mdt.insert(7);
         System.out.println("Max depth of tree is: "+mdt.maxDepth(mdt.root));
+        System.out.println("Max depth of tree is: "+mdt.maxDepthIterative(mdt.root));
         System.out.println("Max depth of tree is: "+mdt.maxDepthBFS(mdt.root));
     }
 }
