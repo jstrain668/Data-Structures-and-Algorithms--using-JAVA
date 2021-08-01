@@ -74,7 +74,8 @@ public class BSTOperations {
 
     //Reference: https://leetcode.com/problems/delete-node-in-a-bst/
     //Description: To delete a node, first you must find the key (traverse tree). After finding node there are 3 cases to
-    //to handle when deleting. First the node is a leaf node, where the parent node reference (left or right) is set
+    //to handle when deleting.
+    //Case 1: First the node is a leaf node, where the parent node reference (left or right) is set
     //to null. Also handle scenario where found node is the root node resulting root node becoming null.
     //Case 2: The node has two child nodes, in this case, the successor node (right node of current node is searched to
     //find min key) replaces the current node and the successor node is deleted via recursive call
