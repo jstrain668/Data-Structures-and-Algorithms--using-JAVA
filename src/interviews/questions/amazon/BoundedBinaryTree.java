@@ -46,6 +46,72 @@ public class BoundedBinaryTree {
         return rootNode;
     }
 
+    public TreeNode createBinaryTree2(){
+        TreeNode root = new TreeNode(20);
+        TreeNode node8 = new TreeNode(8);
+        TreeNode node4 = new TreeNode(4);
+        TreeNode node12 = new TreeNode(12);
+        TreeNode node10 = new TreeNode(10);
+        TreeNode node14 = new TreeNode(14);
+        TreeNode node22  = new TreeNode(22);
+        TreeNode node25  = new TreeNode(25);
+
+        root.left = node8;
+        root.right = node22;
+
+        node8.left = node4;
+        node8.right = node12;
+
+        node12.left = node10;
+        node12.right = node14;
+
+        node22.right = node25;
+        return root;
+    }
+
+    public TreeNode createBinaryTree3() {
+        TreeNode root = new TreeNode(1);
+        TreeNode node2 = new TreeNode(2);
+        TreeNode node3 = new TreeNode(3);
+        TreeNode node4 = new TreeNode(4);
+
+        root.right = node2;
+        node2.left = node3;
+        node2.right = node4;
+
+        return root;
+    }
+
+    public TreeNode createBinaryTree4() {
+        TreeNode root = new TreeNode(1);
+        TreeNode node2 = new TreeNode(2);
+        TreeNode node4 = new TreeNode(4);
+        TreeNode node5 = new TreeNode(5);
+        TreeNode node7 = new TreeNode(7);
+        TreeNode node8 = new TreeNode(8);
+
+        TreeNode node3 = new TreeNode(3);
+        TreeNode node6 = new TreeNode(6);
+        TreeNode node9 = new TreeNode(9);
+        TreeNode node10 = new TreeNode(10);
+
+        root.left = node2;
+        root.right = node3;
+
+        node2.left = node4;
+        node2.right = node5;
+
+        node5.left = node7;
+        node5.right = node8;
+
+        node3.left = node6;
+
+        node6.left = node9;
+        node6.right = node10;
+
+        return root;
+    }
+
     public void printRightBottomUp(TreeNode node){
 
         if(node == null) {
@@ -122,13 +188,66 @@ public class BoundedBinaryTree {
         printRightBottomUp(rootNode.right);
     }
 
+
+    private void traverseAndPrint(TreeNode node, boolean leftEdge, boolean rightEdge){
+
+        if (node == null){
+            return;
+        }
+
+        if (leftEdge) {
+            System.out.print(node.data+" ");
+        }
+
+        //add bottom
+        if(!leftEdge && !rightEdge && node.left == null && node.right == null) {
+            System.out.print(node.data+" ");
+        }
+
+        traverseAndPrint(node.left, leftEdge, rightEdge && node.right == null);
+        traverseAndPrint(node.right, leftEdge && node.left == null, rightEdge);
+
+        if (rightEdge) {
+            System.out.print(node.data+" ");
+        }
+    }
+
+    //Description: The boundary of a binary tree consists of:
+    //1. Left most boundary in top-down direction,
+    //2. All the leaf nodes from left to right,
+    //3. Right most boundary in bottom-up direction.
+    //The algorithm splits the traversal into two main traversals left and right of root node
+    //1. If on the left boundary then if the node has a non-null left child node then the left node becomes part of the
+    //left boundary, but if a node on left boundary does not have a non-null left node but has a non-null right node
+    //then the right node becomes part of the left boundary. Leverage left edge flag to reflect left boundary processing
+    //2. While processing on the left hand-side of the tree, print the leaf nodes by turning of the left edge flag and
+    //checking left and right pointers are null.
+    //3. After processing left hand of tree, turn on right edge flag and switch of left edge flag. Process from bottom
+    // up by processing leaf nodes and then right hand boundary nodes. When processing leaf nodes apart from leaf node
+    // which is the right boundary the left and right edge flags are null.
+    //4. Recursive calls on the right boundary prints the right boundary nodes from bottom to top.
+    //Time Complexity: O(n)
+    //Space Complexity: O(1)
+
+    public void printTreeBoundary(TreeNode node){
+
+        if (node != null){
+
+            System.out.print(node.data+" ");
+            traverseAndPrint(node.left, true, false);
+            traverseAndPrint(node.right, false, true);
+        }
+    }
+
     public static void main(String[] args)
     {
         BoundedBinaryTree bbt = new BoundedBinaryTree();
         // Creating a binary tree
-        TreeNode rootNode=bbt.createBinaryTree();
+        TreeNode rootNode=bbt.createBinaryTree4();
         System.out.println("Boundary traversal of binary tree will be:");
         bbt.boundaryLevelTraversal(rootNode);
+        System.out.println();
+        bbt.printTreeBoundary(rootNode);
     }
 
 
