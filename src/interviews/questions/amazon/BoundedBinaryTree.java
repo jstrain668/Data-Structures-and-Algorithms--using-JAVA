@@ -4,6 +4,10 @@ package interviews.questions.amazon;
 //Reference: https://www.techiedelight.com/boundary-traversal-binary-tree/
 //Reference: https://titanwolf.org/Network/Articles/Article?AID=04b0f568-850c-4549-b64a-cbc4b9de7e8e#gsc.tab=0
 //Reference: https://www.thealgorists.com/Algo/Tree/ProblemSolving
+//Reference: https://www.techiedelight.com/boundary-traversal-binary-tree/
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 public class BoundedBinaryTree {
 
@@ -16,6 +20,10 @@ public class BoundedBinaryTree {
         {
             this.data=data;
         }
+    }
+
+    public boolean isLeafNode(TreeNode node){
+        return node.left == null && node.right == null;
     }
 
     public TreeNode createBinaryTree()
@@ -245,15 +253,93 @@ public class BoundedBinaryTree {
         }
     }
 
+    public void printLBoundary(TreeNode parent){
+        TreeNode node = parent;
+
+        // do for all non-leaf nodes
+        while (node != null && (!isLeafNode(node)))
+        {
+            // print the current node
+            System.out.print(node.data + " ");
+
+            // next process, the left child of `root` if it exists;
+            // otherwise, move to the right child
+            node = (node.left != null) ? node.left: node.right;
+        }
+    }
+
+    public void printLeaves(TreeNode parent){
+
+        // BFS designed to only include leaf nodes
+        Queue<TreeNode> q = new LinkedList<>();
+        q.add(parent);
+        while (!q.isEmpty()) {
+            TreeNode temp = q.peek();
+            q.remove();
+            if (isLeafNode(temp)) {
+                System.out.print(temp.data + " ");
+            }
+            if (temp.left != null) {
+                q.add(temp.left);
+            }
+            if (temp.right != null) {
+                q.add(temp.right);
+            }
+        }
+
+    }
+
+    public void printRBoundary(TreeNode parent){
+        // base case: root is empty, or root is a leaf node
+        if (parent == null || isLeafNode(parent)) {
+            return;
+        }
+
+        // recur for the right child of `root` if it exists;
+        // otherwise, recur for the left child
+        printRBoundary(parent.right != null ? parent.right: parent.left);
+
+        // To ensure bottom-up order, print the value of the nodes
+        // after recursion unfolds
+        System.out.print(parent.data + " ");
+    }
+
+    // Function to perform the boundary traversal on a given tree
+    //Issue with printLeaves. Need to introduce a depth flag, where
+    // nodes of a deeper level are printed first (left to right)
+    public void performBoundaryTraversal(TreeNode root)
+    {
+        // base case
+        if (root == null) {
+            return;
+        }
+
+        // print the root node
+        System.out.print(root.data + " ");
+
+        // print the left boundary (except leaf nodes)
+        printLBoundary(root.left);
+
+        // print all leaf nodes
+        if (!isLeafNode(root)) {
+            printLeaves(root);
+        }
+
+        // print the right boundary (except leaf nodes)
+        printRBoundary(root.right);
+    }
+
     public static void main(String[] args)
     {
         BoundedBinaryTree bbt = new BoundedBinaryTree();
         // Creating a binary tree
-        TreeNode rootNode=bbt.createBinaryTree4();
+        TreeNode rootNode=bbt.createBinaryTree2();
         System.out.println("Boundary traversal of binary tree will be:");
         bbt.boundaryLevelTraversal(rootNode);
         System.out.println();
         bbt.printTreeBoundary(rootNode);
+        System.out.println();
+        //bbt.performBoundaryTraversal(rootNode);
     }
 
 
