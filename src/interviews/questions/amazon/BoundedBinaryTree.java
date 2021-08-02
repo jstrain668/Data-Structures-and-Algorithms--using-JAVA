@@ -216,7 +216,11 @@ public class BoundedBinaryTree {
     //1. Left most boundary in top-down direction,
     //2. All the leaf nodes from left to right,
     //3. Right most boundary in bottom-up direction.
-    //The algorithm splits the traversal into two main traversals left and right of root node
+    //The algorithm splits the traversal into two main traversals left and right of root node. Left edge traversing is
+    //done in a pre-order fashion, visit a node first then its children and the right edge traversing is done in a post
+    //order fashion, visit the children first before visiting the node.Printing the leaf nodes which are not left edge
+    //leaf node and right edge leaf node is accomplished by checking the node's left and right pointers are null and the
+    // left edge check and right edge check are false.
     //1. If on the left boundary then if the node has a non-null left child node then the left node becomes part of the
     //left boundary, but if a node on left boundary does not have a non-null left node but has a non-null right node
     //then the right node becomes part of the left boundary. Leverage left edge flag to reflect left boundary processing
