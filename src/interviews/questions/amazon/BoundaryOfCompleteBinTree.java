@@ -16,7 +16,7 @@ public class BoundaryOfCompleteBinTree {
     }
 
     // Function to print the nodes of a complete
-// binary tree in boundary traversal order
+    // binary tree in boundary traversal order
     public void boundaryTraversal(Node root)
     {
         if (root != null) {
