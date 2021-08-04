@@ -11,13 +11,14 @@ public class TravelItinerary {
     // Driver function
     public static void main(String[] args)
     {
+        TravelItinerary ti = new TravelItinerary();
         Map<String, String> dataSet = new HashMap<String, String>();
         dataSet.put("Dublin", "Cork");
         dataSet.put("Cork", "Limerick");
         dataSet.put("Limerick", "Galway");
         dataSet.put("Galway", "Belfast");
 
-        printResult(dataSet);
+        ti.printResult(dataSet);
     }
 
 
@@ -47,7 +48,7 @@ public class TravelItinerary {
 
 
     // This function populates 'result' for given input 'dataset'
-    private static void printResult(Map<String, String> dataSet)
+    private void printResult(Map<String, String> dataSet)
     {
         // To store reverse of given map
         Map<String,String> reverseDataSet = new HashMap<>();
