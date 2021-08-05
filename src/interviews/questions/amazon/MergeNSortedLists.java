@@ -1,6 +1,7 @@
 package interviews.questions.amazon;
 
-//https://leetcode.com/problems/merge-k-sorted-lists/
+//Reference: https://leetcode.com/problems/merge-k-sorted-lists/
+//https://www.geeksforgeeks.org/merge-k-sorted-linked-lists/
 
 import java.util.ArrayList;
 import java.util.List;
