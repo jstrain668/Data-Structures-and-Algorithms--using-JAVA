@@ -1,8 +1,7 @@
 package interviews.questions.amazon;
 
-import java.util.ArrayList;
+
 import java.util.Arrays;
-import java.util.List;
 
 
 //Question: Problem: Given an array A[0,…, n-1], an element at index i(0 < i < n-1) is a local minimum if A[i] < A[i-1]
@@ -11,12 +10,13 @@ import java.util.List;
 // Constraints: – The arrays has at least three elements–
 // The first two numbers are decreasing and the last two numbers are increasing.
 // – The numbers are unique
+//
 public class LocalMinSingleArray {
 
 
     //Solution: Linear for loop executing comparisons to find local min which satisfies a[i] < a[i-1] and a[i] < a[i+1]
     //This for loop requires 3 elements to work. Before the loop handle the special cases of empty (throw exception) and
-    // less than 3 elements in the array. return -1
+    // less than 3 elements in the array. Return -1
     //Time Complexity: O(n)
     //Space Complexity: O(1)
 
@@ -41,11 +41,18 @@ public class LocalMinSingleArray {
             }
         }
 
-        //Reached here then a local min couldn't be found
+        //Should not reach here if the array satisfies the constraints.
+        // Reached here then a local min couldn't be found
         System.out.println("No local min could be found");
         return -1;
     }
 
+
+    //Solution: Use iterative binary search to find local min which satisfies a[i] < a[i-1] and a[i] < a[i+1]
+    //This for loop requires 3 elements to work. Before the loop handle the special cases of empty and
+    // less than 3 elements in the array. Return -1
+    //Time Complexity: O(log n) due to binary search.
+    //Space Complexity: O(1)
     public int findLocalMinIterative(int[] nums){
 
         if (nums == null || nums.length == 0){
@@ -101,6 +108,10 @@ public class LocalMinSingleArray {
         return findLocalMinima(nums,0,nums.length);
     }
 
+    //Solution: Use recursive binary search to find local min which satisfies a[i] < a[i-1] and a[i] < a[i+1]
+    //This for loop requires 3 elements to work. Base condition for exiting
+    //Time Complexity: O(log n) due to binary search.
+    //Space Complexity: O(log n) for the call stack
     private int findLocalMinima(int[] nums, int start, int end)
     {
         int mid = start + (end - start) / 2;
