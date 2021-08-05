@@ -6,7 +6,9 @@ package interviews.questions.amazon;
 // Constraints: – The numbers are unique
 // = For corner elements, we need to consider only one neighbor for comparison.
 // Because there is no constraint - The first two numbers are decreasing and the last two numbers are increasing then
-// there is no gurantee a local min will be found
+// there is no guarantee a local min will be found
+
+//Reference: https://www.geeksforgeeks.org/find-local-minima-array/
 
 import java.util.Arrays;
 
