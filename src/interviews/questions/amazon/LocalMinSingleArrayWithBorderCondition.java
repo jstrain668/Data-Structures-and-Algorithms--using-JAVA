@@ -9,6 +9,7 @@ package interviews.questions.amazon;
 // there is no guarantee a local min will be found
 
 //Reference: https://www.geeksforgeeks.org/find-local-minima-array/
+//https://java2blog.com/find-local-minima-array/#Efficient_approach
 
 import java.util.Arrays;
 
