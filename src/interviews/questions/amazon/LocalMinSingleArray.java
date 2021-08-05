@@ -109,7 +109,8 @@ public class LocalMinSingleArray {
     }
 
     //Solution: Use recursive binary search to find local min which satisfies a[i] < a[i-1] and a[i] < a[i+1]
-    //This for loop requires 3 elements to work. Base condition for exiting
+    //This for loop requires 3 elements to work. Base condition for exiting mid has reach 0 or length of array -1 if
+    // local min not found. However local min should be found if array satisfies constraints.
     //Time Complexity: O(log n) due to binary search.
     //Space Complexity: O(log n) for the call stack
     private int findLocalMinima(int[] nums, int start, int end)
