@@ -57,10 +57,10 @@ public class LocalMinSingleArrayWithBorderCondition {
             if ((nums[mid] < nums[mid-1]) && (nums[mid] < nums[mid+1])) {
                 return nums[mid];
             }
-            else if (nums[mid] > nums[mid - 1]) {
+            else if (nums[mid] > nums[mid - 1]) { // Go left
                 end = mid;
             }
-            else {
+            else {  // Go right
                 start = mid + 1;
             }
         }
@@ -104,10 +104,10 @@ public class LocalMinSingleArrayWithBorderCondition {
         if ((nums[mid] < nums[mid-1]) && (nums[mid] < nums[mid+1])) {
             return nums[mid];
         }
-        else if (nums[mid] > nums[mid - 1]) {
+        else if (nums[mid] > nums[mid - 1]) {  // Go Left
             return findLocalMin(nums, start, mid);
         }
-        else {
+        else { // Go Right
             return findLocalMin(nums, mid + 1, end);
         }
     }

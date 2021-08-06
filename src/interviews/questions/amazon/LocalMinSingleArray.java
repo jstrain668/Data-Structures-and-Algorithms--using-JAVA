@@ -66,7 +66,7 @@ public class LocalMinSingleArray {
         }
 
         int start = 0;
-        int end = nums.length;
+        int end = nums.length - 1;
 
         while (start <= end){
             int mid = start + (end - start) / 2;
@@ -79,11 +79,11 @@ public class LocalMinSingleArray {
             if ((nums[mid] < nums[mid-1]) && (nums[mid] < nums[mid+1])) {
                 return nums[mid];
             }
-            else if (nums[mid] > nums[mid - 1]) {
+            else if (nums[mid] > nums[mid - 1]) { // Go left
                 end = mid;
             }
-            else {
-                start = mid + 1;
+            else { // Go right
+                start = mid+1;
             }
         }
 
@@ -93,7 +93,7 @@ public class LocalMinSingleArray {
 
     }
 
-    public int findLocalMin(int[] nums){
+    public int findLocalMinRecursive(int[] nums){
 
         if (nums == null || nums.length == 0){
             System.out.println("Null or empty array passed into findLocalMin");
@@ -105,7 +105,7 @@ public class LocalMinSingleArray {
             return -1;
         }
 
-        return findLocalMinima(nums,0,nums.length);
+        return findLocalMin(nums,0,nums.length-1);
     }
 
     //Solution: Use recursive binary search to find local min which satisfies a[i] < a[i-1] and a[i] < a[i+1]
@@ -113,11 +113,15 @@ public class LocalMinSingleArray {
     // local min not found. However local min should be found if array satisfies constraints.
     //Time Complexity: O(log n) due to binary search.
     //Space Complexity: O(log n) for the call stack
-    private int findLocalMinima(int[] nums, int start, int end)
+    private int findLocalMin(int[] nums, int start, int end)
     {
+
         int mid = start + (end - start) / 2;
         // Find index of middle element
 
+        // Base exit for recursive loop
+        // Since mid has reached start of array or end of array, then a local min cannot be found as there is no left
+        //neighbour at start of array and no right neighbour at end of array
         if (mid == 0 || mid == nums.length-1){
             System.out.println("No local min could be found - mid point reached "+mid);
             return -1;
@@ -126,11 +130,11 @@ public class LocalMinSingleArray {
         if ((nums[mid] < nums[mid-1]) && (nums[mid] < nums[mid+1])) {
             return nums[mid];
         }
-        else if (nums[mid] > nums[mid - 1]) {
-            return findLocalMinima(nums, start, mid);
+        else if (nums[mid] > nums[mid - 1]) { // Go left
+            return findLocalMin(nums, start, mid);
         }
-        else {
-            return findLocalMinima(nums, mid + 1, end);
+        else { // Go right
+            return findLocalMin(nums, mid+1, end);
         }
     }
 
@@ -138,7 +142,7 @@ public class LocalMinSingleArray {
     public static void main(String[] args) {
 
         LocalMinSingleArray localMinSingleArray = new LocalMinSingleArray();
-        int[] nums = {10, 5, 3, 6, 13, 16, 19};
+        int[] nums = {10, 5, 3, 2, 1, 0, 19};
         int[] nums1 = {14,13,12,11};
         int[] nums2 = {11,12,13,14};
         int[] nums3 = {8,6};
@@ -147,7 +151,7 @@ public class LocalMinSingleArray {
         System.out.println("Array of ints: "+ Arrays.toString(nums5));
 
         System.out.println("Local min: "+localMinSingleArray.findLocalMinLinear(nums5));
-        System.out.println("Local min: "+localMinSingleArray.findLocalMinima(nums5,0,nums5.length));
+        System.out.println("Local min: "+localMinSingleArray.findLocalMinRecursive(nums5));
         System.out.println("Local min: "+localMinSingleArray.findLocalMinIterative(nums5));
     }
 }
