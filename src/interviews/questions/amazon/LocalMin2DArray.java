@@ -2,6 +2,7 @@ package interviews.questions.amazon;
 
 //Reference: https://www.codeproject.com/Questions/320820/finding-local-minimum-of-a-NxN-matrix-with-algorit
 //Reference: https://www.baeldung.com/cs/local-minimum-in-n-x-n-matrix
+//Reference: http://www.jsums.edu/nmeghanathan/files/2017/01/CSC323-Mod2.pdf?x61976
 
 //Rules for finding local min, cell must be less than cell above, below, to the right and to the left. Depending on cell
 //location there may not be above or below, left or right, so two available comparisons is sufficient.
