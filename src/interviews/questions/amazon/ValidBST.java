@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//Amazon question:IsBst Given a binary tree, find if the tree is BST
+
+//Reference: https://www.geeksforgeeks.org/a-program-to-check-if-a-binary-tree-is-bst-or-not/
+
 public class ValidBST {
 
     TreeNode head;
