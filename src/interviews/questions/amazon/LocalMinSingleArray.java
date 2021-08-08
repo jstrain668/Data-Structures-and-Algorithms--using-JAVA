@@ -10,7 +10,7 @@ import java.util.Arrays;
 // Constraints: – The arrays has at least three elements–
 // The first two numbers are decreasing and the last two numbers are increasing.
 // – The numbers are unique
-//
+//Reference: http://www.jsums.edu/nmeghanathan/files/2017/01/CSC323-Mod2.pdf?x61976
 public class LocalMinSingleArray {
 
 
