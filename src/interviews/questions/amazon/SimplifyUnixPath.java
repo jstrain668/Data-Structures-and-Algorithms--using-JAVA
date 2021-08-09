@@ -1,5 +1,7 @@
 package interviews.questions.amazon;
 
+//Reference: https://www.geeksforgeeks.org/simplify-directory-path-unix-like/
+
 //Question: Collapse path to filename. Write a function that will take string as input. That string will be a a file
 // name (e.g. "/usr/bin”). That path might contain special directories “.” (reference to self) and “..” (reference
 // to parent directory). Your function will return the name for the file without using special directories
