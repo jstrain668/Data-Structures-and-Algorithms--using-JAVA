@@ -2,6 +2,7 @@ package interviews.questions.amazon;
 
 //Reference: https://www.geeksforgeeks.org/simplify-directory-path-unix-like/
 // https://leetcode.com/problems/simplify-path/
+// https://leetcode.com/discuss/interview-question/553454/facebook-phone-change-working-directory
 
 //Question: Collapse path to filename. Write a function that will take string as input. That string will be a a file
 // name (e.g. "/usr/bin”). That path might contain special directories “.” (reference to self) and “..” (reference
