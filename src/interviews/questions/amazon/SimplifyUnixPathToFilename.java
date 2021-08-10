@@ -1,6 +1,7 @@
 package interviews.questions.amazon;
 
 //Reference: https://www.geeksforgeeks.org/simplify-directory-path-unix-like/
+// https://leetcode.com/problems/simplify-path/
 
 //Question: Collapse path to filename. Write a function that will take string as input. That string will be a a file
 // name (e.g. "/usr/bin”). That path might contain special directories “.” (reference to self) and “..” (reference
@@ -49,9 +50,11 @@ package interviews.questions.amazon;
 //Output : /a/b/c/d
 
 
+import java.util.Deque;
+import java.util.LinkedList;
 import java.util.Stack;
 
-public class SimplifyUnixPath {
+public class SimplifyUnixPathToFilename {
 
     //Process the string by ignoring the "/" and multiples of "//". Store the non "/" chars in a temporary string 'dir'
     //Store current 'dir' name in a stack, continue processing (ignore) if "." is encountered in 'dir' and pop the stack
@@ -62,7 +65,7 @@ public class SimplifyUnixPath {
     //Space Complexity: O(n) for the stack its O(2n) for the two stacks but remove constant
 
     // function to simplify a Unix - styled absolute path
-    public String simplify(String A)
+    public String naiveSimplify(String A)
     {
         // Stack to store the file's names.
         Stack<String> st = new Stack<>();
@@ -124,7 +127,6 @@ public class SimplifyUnixPath {
             // st.pop();
         }
 
-
         // the st1 will contain the actual res.
         while (!st1.empty())
         {
@@ -141,21 +143,143 @@ public class SimplifyUnixPath {
         return res;
     }
 
+    // Split/Tokenize the path string using '/' as the separator. This can result in ".", "..", "", "<folder|filename"
+    // "." and "" are ignored. '..' results in popping the last folder pushed onto the stack. Otherwise push contents
+    //onto the stack. Since Stack is LIFO, the Stringbuilder prepends the pop string value (inserts at start of the
+    // string). If the Stringbuilder is zero length return "/" (stack was empty)
+    // Time Complexity: O(n) for the split function where n is the number of characters in string. Plus O(m) for the
+    // number of substrings in the path string governed by the split pattern. Plus O(i) for the number of items processed
+    // on the stack. O(n+m+i)
+    // Space Complexity: O(m) + O(i)
+
+    public String simplifyPathStack(String path) {
+
+        if (path == null || path.length() == 0){
+            return path;
+        }
+
+        String pathComponents[] = path.split("/");
+        Stack<String> stack = new Stack<>();
+
+        for(int i=0;i<pathComponents.length;i++) {
+
+            switch(pathComponents[i]) {
+                case "." :
+                case ""  :
+                    break;
+                case "..":
+                    if(stack.size()!=0) {
+                        stack.pop();
+                    }
+                    break;
+                default:
+                    stack.push(pathComponents[i]);
+            }
+        }
+
+        StringBuilder sb = new StringBuilder();
+        while (!stack.isEmpty()) {
+            sb.insert(0, "/"+stack.pop());
+
+        }
+
+        if(sb.length()==0) {
+            return "/";
+        }
+
+        return sb.toString();
+    }
+
+    // Split/Tokenize the path string using '/' as the separator. This can result in ".", "..", "", "<folder|filename"
+    // "." and "" are ignored. '..' results in removing the last folder added to the dequeue. Otherwise add contents to
+    // the end of the deque. Since most recent items are added to the end of the deque, the order from start to end is
+    // in the correct sequence for building the string of the simplified path.
+    // Use the string join function using "/" as the separator between each item to formulate the string to be returned
+    // Time Complexity: O(n) for the split function where n is the number of characters in string. Plus O(m) for the
+    // number of substrings in the path string governed by the split pattern. Plus O(i) for the number of items processed
+    // on the Deque. O(n+m+i)
+    // Space Complexity: O(m) + O(i)
+
+    Deque<String> getpath(String path){
+
+        Deque<String> m = new LinkedList<>();
+
+        for(String s:path.split("/")){
+
+            if(s.equals("") || s.equals(".")) {
+                continue;
+            }
+            else if(s.equals("..")){
+                if(!m.isEmpty()) {
+                    m.removeLast();
+                }
+            }
+            else {
+                m.addLast(s);
+            }
+        }
+        return m;
+    }
+
+    public String simplifyPathDeque(String path) {
+
+        if (path == null || path.length() == 0){
+            return path;
+        }
+
+        String res="";
+        return "/"+res.join("/",getpath(path));
+    }
+
+
     public static void main(String []args)
     {
-        SimplifyUnixPath sup = new SimplifyUnixPath();
-        // Filename with unix reduce to be reduced to filename.
+        SimplifyUnixPathToFilename sup = new SimplifyUnixPathToFilename();
+        // Filename with unix path reduce to be reduced to filename.
         String str = new String("/a/./b/../../c");
-        String res = sup.simplify(str);
+        String res = sup.naiveSimplify(str);
         System.out.println(res);
         str = "/home/";
-        res = sup.simplify(str);
+        res = sup.naiveSimplify(str);
         System.out.println(res);
         str = "/usr/var/../../tmp";
-        res = sup.simplify(str);
+        res = sup.naiveSimplify(str);
         System.out.println(res);
         str = "/a/./b/./c/./d/";
-        res = sup.simplify(str);
+        res = sup.naiveSimplify(str);
         System.out.println(res);
+        str = "/..";
+        System.out.println( sup.naiveSimplify(str));
+        str = "////usr//bin";
+        System.out.println( sup.naiveSimplify(str));
+        System.out.println();
+
+        str = "/a/./b/../../c";
+        System.out.println(sup.simplifyPathStack(str));
+        str = "/home/";
+        System.out.println(sup.simplifyPathStack(str));
+        str = "/usr/var/../../tmp";
+        System.out.println(sup.simplifyPathStack(str));
+        str = "/a/./b/./c/./d/";
+        System.out.println(sup.simplifyPathStack(str));
+        str = "/..";
+        System.out.println( sup.simplifyPathStack(str));
+        str = "////usr//bin";
+        System.out.println( sup.simplifyPathStack(str));
+        System.out.println();
+
+        str = "/a/./b/../../c";
+        System.out.println(sup.simplifyPathDeque(str));
+        str = "/home/";
+        System.out.println(sup.simplifyPathDeque(str));
+        str = "/usr/var/../../tmp";
+        System.out.println(sup.simplifyPathDeque(str));
+        str = "/a/./b/./c/./d/";
+        System.out.println(sup.simplifyPathDeque(str));
+        str = "/..";
+        System.out.println( sup.simplifyPathDeque(str));
+        str = "////usr//bin";
+        System.out.println( sup.simplifyPathDeque(str));
+        System.out.println();
     }
 }
