@@ -2,6 +2,9 @@ package interviews.questions.amazon;
 
 import java.util.HashMap;
 
+//Reference: https://medium.com/@abhimanyu.rana117/copy-a-linked-list-with-random-pointers-3e99b48281ce
+//Question: https://leetcode.com/problems/copy-list-with-random-pointer/
+
 public class CopyListWithRandomPointer {
 
     Node head;
@@ -164,6 +167,59 @@ public class CopyListWithRandomPointer {
         return temp;
     }
 
+    public Node dupListWithRandomPtr(Node head){
+
+
+        if (head == null){
+            return null;
+        }
+
+        //Create a copy of each node and store it in the same list. Each duplicated node is inserted after original
+        //node.The next pointer for each dup node is set as well
+
+        Node current = head;
+
+        while (current != null){
+            Node dup = new Node(current.val);
+            //Duplicated node points to next node in list
+            dup.next = current.next;
+            //Current node points to the duplicated node
+            current.next = dup;
+            //Current pointer moves to the duplicate next node
+            current = dup.next;
+        }
+
+        //Now set the random pointer for the duplicated nodes
+        //Iterate the list having both the new and old nodes intertwined with each other and use the original nodes’
+        // random pointers to assign references to random pointers for duplicated nodes. For eg. If B has a random
+        // pointer to A, this means B' has a random pointer to A'.
+
+        current = head;
+
+        while (current != null){
+            // If there exists a random pointer for original node, assign a same pointer for the duplicated node
+            current.next.random = (current.random != null) ? current.random.next : null;
+
+            // Jump to the next original node (Remember we have duplicated nodes in between original nodes)
+            current = current.next.next;
+        }
+
+        //Separate the duplicate list from the original list
+
+        current = head;
+        Node dupCurrent = head.next;
+        Node dupHead = dupCurrent;
+
+        while (current != null){
+            current.next = current.next.next;
+            dupCurrent.next = (dupCurrent.next !=null) ? dupCurrent.next.next : null;
+            dupCurrent = dupCurrent.next;
+            current = current.next;
+        }
+
+        return dupHead;
+    }
+
     public static void main(String[] args) {
         CopyListWithRandomPointer clwrp = new CopyListWithRandomPointer();
 
@@ -180,6 +236,7 @@ public class CopyListWithRandomPointer {
         node5.random = node1;
 
         clwrp.copyRandomList(clwrp.head);
+        clwrp.dupListWithRandomPtr(clwrp.head);
       //  clwrp.copyRandomListUsingHashMap(clwrp.head);
     }
 }
