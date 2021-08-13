@@ -64,7 +64,7 @@ public class LongestIncreasingSubsequence {
     // if the current nums[i] is bigger than the previous max
     // Compare all prior values: dp[i] = dp[i] > dp[j] + 1 ? dp[i] : dp[j] + 1, where j = [0, i).
     // Time Complexity: O(nxn) - while not strictly nxn
-    // Space Complexity: Auxillary array O(n)
+    // Space Complexity: Auxiliary array O(n)
     public int lengthOfLIS(int[] nums) {
         if (nums == null || nums.length == 0) {
             return 0;
@@ -112,26 +112,27 @@ public class LongestIncreasingSubsequence {
 
         ArrayList<Integer> list = new ArrayList<Integer>();
 
-        for (int n=0; n < nums.length; n++) {
+        for (int i=0; i < nums.length; i++) {
             //Build the ascending list
             //First element 'n' is always added to list.
             //New element 'n' will be added if greater than the last element added to the list
-            if (list.isEmpty() || n > list.get(list.size()-1)) {
-                list.add(n);
+            if (list.isEmpty() || nums[i] > list.get(list.size()-1)) {
+                list.add(nums[i]);
             } else { //Current element 'n' is less than the last element added to the list
                 int low = 0, high = list.size() - 1;
                 while (low <= high) {
                     int mid = low + (high - low) / 2;
-                    if (n <= list.get(mid)) {
+                    if (nums[i] <= list.get(mid)) {
                         high = mid - 1;
                     } else {
                         low = mid + 1;
                     }
                 }
                 //Bin search produces the index of the element in the list to be replaced
-                list.set(low, n);
+                list.set(low, nums[i]);
             }
         }
+        System.out.println(list.toString());
         return list.size();
     }
 
@@ -141,9 +142,9 @@ public class LongestIncreasingSubsequence {
         int[] nums1 = {7,7,7};
         int[] nums2 = {0,1,0,3,2,3};
         int[] nums3 = {0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15};
-        System.out.println("Input array: "+ Arrays.toString(nums));
-        System.out.println("Longest increasing subsequence: "+lis.naiveLengthOfLIS(nums));
-        System.out.println("Longest increasing subsequence: "+lis.lengthOfLIS(nums));
-        System.out.println("Longest increasing subsequence: "+lis.lengthOfLIS2(nums));
+        System.out.println("Input array: "+ Arrays.toString(nums3));
+        System.out.println("Longest increasing subsequence: "+lis.naiveLengthOfLIS(nums3));
+        System.out.println("Longest increasing subsequence: "+lis.lengthOfLIS(nums3));
+        System.out.println("Longest increasing subsequence: "+lis.lengthOfLIS2(nums3));
     }
 }
