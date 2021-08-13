@@ -4,6 +4,7 @@ package interviews.questions.amazon;
 //Question: https://leetcode.com/problems/longest-increasing-subsequence/
 //Reference: https://segmentfault.com/a/1190000003819886
 //Reference: https://github.com/wzhishen/leetcode/blob/master/src/solutions/LongestIncreasingSubsequence_300.java
+//Reference: https://afteracademy.com/blog/longest-increasing-subsequence
 
 import java.util.ArrayList;
 import java.util.Arrays;
