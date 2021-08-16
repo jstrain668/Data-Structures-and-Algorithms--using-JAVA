@@ -13,8 +13,8 @@ public class ReverseWordsInString {
     //While "\\s+" pattern matches multiple white space characters, its slower than matching on the single white
     //space character because of the multiples match. This is the slowest solution.
     //Time Complexity: Overall O(n) where O(n+k) for the split function finding all the words in the string separated by
-    // one or k white space plus another O(n) for traversing all the words in the string array plus another O(n) for
-    // StringBuilder insert function.
+    // one or k white space chars plus another O(n) for traversing all the words in the string array plus another O(n)
+    // for StringBuilder insert function.
     // Space Complexity: O(n) for the array of strings
     public String reverseWords(String s) {
 
