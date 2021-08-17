@@ -12,6 +12,7 @@ package interviews.questions.amazon;
 
 //Reference: https://aaronice.gitbook.io/lintcode/sweep-line/meeting-rooms
 //Reference: https://massivealgorithms.blogspot.com/2015/08/like-coding-leetcode-252-meeting-rooms.html
+//Reference: https://github.com/wzhishen/leetcode/blob/master/src/solutions/MeetingRooms_252.java
 //Reference (need a subscription): https://leetcode.com/problems/meeting-rooms/
 
 
