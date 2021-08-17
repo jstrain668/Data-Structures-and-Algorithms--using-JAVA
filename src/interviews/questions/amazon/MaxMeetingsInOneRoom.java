@@ -11,6 +11,7 @@ package interviews.questions.amazon;
 // schedule the meeting with the earliest ending time
 // https://courses.cs.duke.edu//spring19/compsci330/lecture7scribe.pdf
 // https://www.codesdope.com/blog/article/find-maximum-meetings-in-one-room/
+// https://www.geeksforgeeks.org/find-maximum-meetings-in-one-room/
 
 import java.util.ArrayList;
 import java.util.Comparator;
