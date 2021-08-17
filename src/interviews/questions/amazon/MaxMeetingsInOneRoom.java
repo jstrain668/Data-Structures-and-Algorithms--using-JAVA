@@ -1,13 +1,13 @@
 package interviews.questions.amazon;
 
-//Question: Find the maximum number of meetings you can attend without overlapping with other meetings
+// Question: Find the maximum number of meetings you can attend without overlapping with other meetings
 // In this problem, you are provided with one room in your company. In this meeting room, there are "N" meetings that
 // need to take place such that only one meeting can take place at a single time. Each meeting has a starting time and
 // an ending time, both of which are provided to you in the form of two arrays(s[] and f[]). Our task here is to find
 // the maximum number of meetings that can take place in this single room without any conflicts based on their starting
 // and end timings.
 
-//Reference: Background on the sorting choice for finding max number of meetings that can be attended which is to
+// Reference: Background on the sorting choice for finding max number of meetings that can be attended which is to
 // schedule the meeting with the earliest ending time
 // https://courses.cs.duke.edu//spring19/compsci330/lecture7scribe.pdf
 // https://www.codesdope.com/blog/article/find-maximum-meetings-in-one-room/
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-public class MaxMeetingRooms {
+public class MaxMeetingsInOneRoom {
 
     public class Interval {
         int start;
@@ -105,7 +105,7 @@ public class MaxMeetingRooms {
     public static void main (String[] args)
     {
 
-        MaxMeetingRooms mmr = new MaxMeetingRooms();
+        MaxMeetingsInOneRoom mmr = new MaxMeetingsInOneRoom();
 
         // Start times
         int[] s = { 1, 2, 10, 6, 9, 0 };
@@ -120,6 +120,22 @@ public class MaxMeetingRooms {
         {
             //Creating pairs of Interval(start,end) and appending to a arraylist
             pair.add(mmr.createInterval(s[i], f[i]));
+        }
+
+        mmr.getMaximumMeetings(pair);
+
+        pair.clear();
+
+        // Starting time
+        int s1[] = { 1, 3, 0, 5, 8, 5 };
+
+        // Finish time
+        int f1[] = { 2, 4, 6, 7, 9, 9 };
+
+        for(int i = 0; i < s.length; i++)
+        {
+            //Creating pairs of Interval(start,end) and appending to a arraylist
+            pair.add(mmr.createInterval(s1[i], f1[i]));
         }
 
         mmr.getMaximumMeetings(pair);
