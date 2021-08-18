@@ -18,7 +18,7 @@ public class LongestIncreasingSubsequence {
     public int naiveLengthOfLIS(int[] nums) {
 
         if (nums == null || nums.length == 0){
-            return -1;
+            return 0;
         }
 
         if (nums.length == 1){
@@ -103,8 +103,8 @@ public class LongestIncreasingSubsequence {
     // Space Complexity: O(n) for the ArrayList
 
     public int lengthOfLIS2(int[] nums) {
-        if (nums == null) {
-            return -1;
+        if (nums == null || nums.length == 0) {
+            return 0;
         }
 
         if (nums.length == 1){
