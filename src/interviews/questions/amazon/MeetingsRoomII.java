@@ -27,7 +27,7 @@ public class MeetingsRoomII {
         }
     }
 
-    //The most basic way of processing the meetings is in increasing order of their start times. Sorting part is easy,
+    // The most basic way of processing the meetings is in increasing order of their start times. Sorting part is easy,
     // but for every meeting how do we find out efficiently if a room is available or not? Instead of manually iterating
     // on every room that's been allocated and checking if the room is available or not, we can keep all the rooms in a
     // min heap where the key for the min heap would be the ending time of meeting.
