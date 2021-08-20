@@ -88,7 +88,7 @@ public class KNodeInLinkedList {
             return null;
         }
 
-        // move the `head` and `curr` parallelly till `curr` reaches the list's end
+        // move the `head` and `curr` parallely till `curr` reaches the list's end
         while (curr != null)
         {
             head = head.next;
