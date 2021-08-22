@@ -12,6 +12,9 @@ import java.util.Arrays;
 //Question: Write methods, that given an input n, find a Langford pairing, or declare there isn't one. Langford paring
 //doesn't exist for n=4m-2, 4m-3 where m >= 1, but surely exists for n=4m, 4m-1.
 
+//Reference: https://cafeaffe.wordpress.com/2017/01/10/langford-pairs/
+//Reference: https://github.com/gagan405/Algorithms/blob/master/algorithms/src/in/cafeaffe/algo/LangfordPairs.java
+
 public class LangfordPairing {
 
     public boolean canMakePairs(int[] pairs,int n){
