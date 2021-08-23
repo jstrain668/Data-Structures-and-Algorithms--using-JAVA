@@ -1,6 +1,7 @@
 package interviews.questions.amazon;
 
 import java.util.PriorityQueue;
+import java.util.Queue;
 
 //Question: There are given n ropes of different lengths, we need to connect these ropes into one rope. The cost to
 //connect two ropes is equal to the sum of their lengths. We need to connect the ropes with minimum cost.
@@ -29,7 +30,7 @@ public class ConnectRopesMinCost {
     public int minCost(int arr[], int n)
     {
         // Create a priority queue
-        PriorityQueue<Integer> pq = new PriorityQueue<Integer>();
+        Queue<Integer> pq = new PriorityQueue<Integer>();
 
         // Adding items to the pQueue
         for (int i = 0; i < n; i++) {
