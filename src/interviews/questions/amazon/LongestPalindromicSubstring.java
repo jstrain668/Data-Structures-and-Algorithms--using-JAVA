@@ -1,8 +1,9 @@
 package interviews.questions.amazon;
 
-import java.sql.Time;
 import java.util.Arrays;
 import java.util.List;
+
+//Question and Reference: https://hellokoding.com/longest-palindromic-substring/
 
 public class LongestPalindromicSubstring {
 
