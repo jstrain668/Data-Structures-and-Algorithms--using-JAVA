@@ -47,7 +47,10 @@ public class TopTenWordsInFile {
     //Solution: Use HasMap to store words and respective word counts. To get the top 10 most frequent words use a heap
     //realized as a priority queue with a comparator to sort the word counts in descending order. The priority queue
     //only stores the top 10 most frequent words
-    //Time Complexity: O(nlogk) where n is the number of words and k is the top k most frequent words
+    //Time Complexity: O(nlogk) where n is the number of words and k is the top k most frequent words. This is for
+    //sorting the most frequent words in a descending order in the priority queue. There is O(n) for reading all the
+    //words in the file, plus another O(n) for reading the hashmap to populate the priority queue. Add another O(k) for
+    //adding the top into a linked list and O(k) for reversing it.
     //Space Complexity: O(n) for the HashMap + O(k) for the heap. The dominant term is o(n)
     public List<Map.Entry<String, Long>> getNWordOccurrencesUsingMinHeap(String filePath,int n,boolean ascending){
 
