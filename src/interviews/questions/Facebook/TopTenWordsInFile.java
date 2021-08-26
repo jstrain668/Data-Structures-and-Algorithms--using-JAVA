@@ -13,6 +13,7 @@ import java.util.*;
 //Reference: https://stackoverflow.com/questions/6176019/comparing-long-values-using-collections-sortobject/26460724
 //Reference: https://massivealgorithms.blogspot.com/2014/06/find-k-most-frequent-words-from-file.html
 //Reference: http://www.algorithmsandme.com/most-frequent-words-in-file/
+//Reference: https://stackoverflow.com/questions/46738870/java-putting-words-from-txt-file-into-hashmap
 
 public class TopTenWordsInFile {
 
