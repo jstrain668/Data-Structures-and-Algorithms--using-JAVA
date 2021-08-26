@@ -5,7 +5,7 @@ import org.apache.commons.lang3.time.StopWatch;
 import java.io.*;
 import java.util.*;
 
-//Question: Determine the 10 most frequent words given a file of strings
+//Question: Determine the 10 most frequent words or least frequent words given a file of strings
 
 //Reference: https://stackoverflow.com/questions/35992891/java-how-to-find-top-10-most-common-string-frequency-in-arraylist
 //Reference: https://www.java67.com/2015/01/how-to-sort-hashmap-in-java-based-on.html
@@ -13,8 +13,6 @@ import java.util.*;
 //Reference: https://stackoverflow.com/questions/6176019/comparing-long-values-using-collections-sortobject/26460724
 //Reference: https://massivealgorithms.blogspot.com/2014/06/find-k-most-frequent-words-from-file.html
 //Reference: http://www.algorithmsandme.com/most-frequent-words-in-file/
-
-
 
 public class TopTenWordsInFile {
 
@@ -56,26 +54,25 @@ public class TopTenWordsInFile {
     public List<Map.Entry<String, Long>> getNWordOccurrencesUsingMinHeap(String filePath,int n,boolean ascending){
 
         Map<String,Long> wordOccurrences = retrieveWords(filePath);
-
-        PriorityQueue<Map.Entry<String, Long>> pq =
-                new PriorityQueue<>(new Comparator<Map.Entry<String, Long>>() {
-                    @Override
-                    public int compare(Map.Entry<String, Long> o1, Map.Entry<String, Long> o2) {
-                        return Long.compare(o1.getValue(),o2.getValue());
-                    }
-                });
-
+        PriorityQueue<Map.Entry<String, Long>> pq = new PriorityQueue<>(getComparatorForPQ(ascending));
         List<Map.Entry<String, Long>> tops = new LinkedList<>();
 
         for (Map.Entry<String,Long> entry : wordOccurrences.entrySet()){
-
             if (pq.size() < n) {
                 pq.add(entry);
-            } else if (entry.getValue() > pq.peek().getValue()) {
-                pq.remove();
-                pq.add(entry);
+            } else {
+                if (ascending) {
+                    if (entry.getValue() < pq.peek().getValue()) {
+                        pq.remove();
+                        pq.add(entry);
+                    }
+                } else{
+                    if (entry.getValue() > pq.peek().getValue()){
+                        pq.remove();
+                        pq.add(entry);
+                    }
+                }
             }
-
         }
 
         while(!pq.isEmpty()){
@@ -121,7 +118,6 @@ public class TopTenWordsInFile {
         Comparator<Map.Entry<String, Long>> valueComparator = new Comparator<Map.Entry<String,Long>>() {
             @Override
             public int compare(Map.Entry<String, Long> e1, Map.Entry<String, Long> e2) {
-
                 if (ascending){
                     return Long.compare(e1.getValue(),e2.getValue());
                 } else {
@@ -130,6 +126,22 @@ public class TopTenWordsInFile {
             }
         };
 
+        return valueComparator;
+    }
+
+    public Comparator<Map.Entry<String, Long>> getComparatorForPQ(boolean ascending){
+
+        Comparator<Map.Entry<String, Long>> valueComparator = new Comparator<Map.Entry<String,Long>>() {
+            @Override
+            public int compare(Map.Entry<String, Long> e1, Map.Entry<String, Long> e2) {
+
+                if (ascending){
+                    return Long.compare(e2.getValue(),e1.getValue());
+                } else {
+                    return Long.compare(e1.getValue(),e2.getValue());
+                }
+            }
+        };
         return valueComparator;
     }
 
@@ -155,7 +167,7 @@ public class TopTenWordsInFile {
         List<Map.Entry<String, Long>> topTenWordOccurrences = topTenWords.getNWordOccurrences(
                "C:\\dev\\files\\sample-2mb-text-file.txt",
                 10,
-                false);
+                true);
 
         //List<Map.Entry<String, Long>> topTenWordOccurrences = topTenWords.getNWordOccurrences(
         //        "C:\\dev\\files\\book.txt",
@@ -175,7 +187,7 @@ public class TopTenWordsInFile {
         stopWatch.start();
         topTenWordOccurrences = topTenWords.getNWordOccurrencesUsingMinHeap("C:\\dev\\files\\sample-2mb-text-file.txt",
                 10,
-                false);
+                true);
         System.out.println("Top 10 words with the most occurrences:");
         count = 1;
         for(Map.Entry<String, Long> current : topTenWordOccurrences){
@@ -185,6 +197,5 @@ public class TopTenWordsInFile {
         stopWatch.stop();
         System.out.println("Execution time in milli seconds for Top 10 word occurrences: "+stopWatch.getTime());
         stopWatch.reset();
-
     }
 }
