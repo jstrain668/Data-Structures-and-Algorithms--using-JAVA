@@ -12,6 +12,7 @@ import java.util.*;
 //Reference: https://www.geeksforgeeks.org/sort-arraylist-in-descending-order-using-comparator-in-java/
 //Reference: https://stackoverflow.com/questions/6176019/comparing-long-values-using-collections-sortobject/26460724
 //Reference: https://massivealgorithms.blogspot.com/2014/06/find-k-most-frequent-words-from-file.html
+//Reference: http://www.algorithmsandme.com/most-frequent-words-in-file/
 
 
 
@@ -50,7 +51,7 @@ public class TopTenWordsInFile {
     //Time Complexity: O(nlogk) where n is the number of words and k is the top k most frequent words. This is for
     //sorting the most frequent words in a descending order in the priority queue. There is O(n) for reading all the
     //words in the file, plus another O(n) for reading the hashmap to populate the priority queue. Add another O(k) for
-    //adding the top into a linked list and O(k) for reversing it.
+    //adding the top k into a linked list and O(k) for reversing it.
     //Space Complexity: O(n) for the HashMap + O(k) for the heap. The dominant term is o(n)
     public List<Map.Entry<String, Long>> getNWordOccurrencesUsingMinHeap(String filePath,int n,boolean ascending){
 
@@ -74,10 +75,11 @@ public class TopTenWordsInFile {
                 pq.remove();
                 pq.add(entry);
             }
+
         }
 
         while(!pq.isEmpty()){
-            tops.add(pq.poll());
+            tops.add(pq.remove());
         }
 
         Collections.reverse(tops);
