@@ -168,7 +168,7 @@ public class TopTenWordsInFile {
         List<Map.Entry<String, Long>> topTenWordOccurrences = topTenWords.getNWordOccurrences(
                "C:\\dev\\files\\sample-2mb-text-file.txt",
                 10,
-                true);
+                false);
 
         //List<Map.Entry<String, Long>> topTenWordOccurrences = topTenWords.getNWordOccurrences(
         //        "C:\\dev\\files\\book.txt",
@@ -188,7 +188,7 @@ public class TopTenWordsInFile {
         stopWatch.start();
         topTenWordOccurrences = topTenWords.getNWordOccurrencesUsingMinHeap("C:\\dev\\files\\sample-2mb-text-file.txt",
                 10,
-                true);
+                false);
         System.out.println("Top 10 words with the most occurrences:");
         count = 1;
         for(Map.Entry<String, Long> current : topTenWordOccurrences){
