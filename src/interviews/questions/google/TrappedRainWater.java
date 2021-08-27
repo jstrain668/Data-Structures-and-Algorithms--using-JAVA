@@ -28,7 +28,12 @@ public class TrappedRainWater {
     //Space Complexity: O(n) for the maxSeenRight array
     public int trap(int[] height) {
 
-        if (height == null || height.length < 3){
+
+        if (height == null){
+            return -1;
+        }
+
+        if (height.length < 3){
             return 0;
         }
 
@@ -66,7 +71,12 @@ public class TrappedRainWater {
     //Time Complexity: O(n) - only one traversal
     //Space Complexity: O(1)
     public int trap2(int[] height) {
-        if (height == null || height.length < 3){
+
+        if (height == null){
+            return -1;
+        }
+
+        if (height.length < 3){
             return 0;
         }
 
