@@ -10,6 +10,7 @@ import java.util.Set;
 //Reference: https://www.techiedelight.com/word-break-problem/
 //Reference: https://medium.com/@harycane/word-break-4da79fedcf43
 //Reference: http://www.algorithmsandme.com/word-break-problem/
+//Reference: https://massivealgorithms.blogspot.com/2015/09/leetcode-word-break-java.html
 
 public class WordBreak {
 
