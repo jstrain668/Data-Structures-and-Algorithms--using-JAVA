@@ -140,16 +140,16 @@ public class WordBreak {
     }
 
     public boolean wordBreakUtilBottomUp(String s,Set<String> set){
+        int n = s.length();
         //declare a boolean dp array 'table' with size = n+1
-        boolean[] table = new boolean[s.length()+1];
+        boolean[] table = new boolean[n+1];
 
         //initialize table[0] = true coz empty string is included in the dictionary
         table[0] = true;
 
-        for (int i=1; i <= s.length();i++){
+        for (int i=0; i <= n; i++) {
             //iterate over j from 0 to < i each time checking if
-            for (int j=i-1; j >= 0; j--){
-
+            for (int j=i-1; j >= 0; j--) {
                 // Check if table[j] && set.contains(s.substring(j,i)) for all values of j in 0 to < i is true
                 if (table[j] && set.contains(s.substring(j,i))){
                     table[i] = true;
@@ -158,18 +158,22 @@ public class WordBreak {
             }
         }
 
-        return table[s.length()];
+        return table[n];
     }
 
     public List<String> addWords(){
         return Arrays.asList("leet","code");
     }
 
+    public List<String> addWords2(){
+        return Arrays.asList("cats","dog","sand","and","cat");
+    }
+
     public static void main(String[] args) {
         WordBreak wb = new WordBreak();
         
-        List<String> wordDict = wb.addWords();
-        String s = "leetcode";
+        List<String> wordDict = wb.addWords2();
+        String s = "catsandog";
         System.out.println(s+" can be broken into space-separated sequence of one or more dictionary words: "+wb.wordBreakBottomUp(s,wordDict));
 
     }
