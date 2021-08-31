@@ -24,7 +24,8 @@ public class RemoveCharFromString {
     }
 
 
-    //Time Complexity: O(n) - dependent on the number of occurrences of the character in the string to be removed
+    //Time Complexity: O(n) - dependent on the number of occurrences of the character in the string to be removed plus
+    // the number of characters in indexof before reaching the desired character
     //Space Complexity: O(n) - system calls for the number of occurrences (stack)
     public String removeCharFromStringRecursive(String s,char ch){
 
