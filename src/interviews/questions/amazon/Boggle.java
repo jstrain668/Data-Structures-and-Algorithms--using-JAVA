@@ -28,7 +28,7 @@ public class Boggle {
 
     // Let the given dictionary be following
     static final List<String> DICTIONARY = Arrays.asList("STAR", "NOTE", "SAND", "STONE");
-    static final Set<String> WORD_DICTIONARY = new HashSet<>(Arrays.asList("STAR", "NOTE", "SAND", "STONE"));
+    //static final Set<String> WORD_DICTIONARY = new HashSet<>(Arrays.asList("STAR", "NOTE", "SAND", "STONE"));
     static final int DICTIONARY_SIZE = DICTIONARY.size();
     static final int WORD_MIN_SIZE = 3;
     // Below arrays detail all eight possible movements from a cell
@@ -110,8 +110,8 @@ public class Boggle {
         }
 
         // `M × N` board
-        int M = board.length;
-        int N = board[0].length;
+        final int M = board.length;
+        final int N = board[0].length;
 
         // construct a boolean matrix to store whether a cell is processed or not
         boolean[][] processed = new boolean[M][N];
