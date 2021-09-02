@@ -1,5 +1,7 @@
 package interviews.questions.amazon;
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import java.util.*;
 
 //Reference: https://www.techiedelight.com/generate-list-of-possible-words-from-a-character-matrix/
@@ -131,7 +133,7 @@ public class BoggleUsingTrie {
     //3.Search the word in a trie which starts with character that we picked in step 2
     //Time Complexity: O(w * l) for inserting words from dictionary into trie where w is the number of words and l is
     //average length of word plus O(n) for the number of TrieNodes for the TrieNode been processed for a potential word
-    //match multipled by 8 for the 8 possible moves
+    //match multiplied by 8 for the 8 possible moves
     //Space complexity
     public Set<String> searchBoggle(char board[][])
     {
@@ -179,13 +181,17 @@ public class BoggleUsingTrie {
     {
         BoggleUsingTrie boggle = new BoggleUsingTrie();
 
-
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
         char board[][] = { { 'G', 'I', 'Z' },
                            { 'U', 'E', 'K' },
                            { 'Q', 'S', 'E' } };
 
         Set<String> validWords = boggle.searchBoggle(board);
         System.out.println(validWords);
+        stopWatch.stop();
+        System.out.println("Execution time in milli seconds for Boggle using Trie: "+stopWatch.getTime());
+        stopWatch.reset();
     }
 
 }
