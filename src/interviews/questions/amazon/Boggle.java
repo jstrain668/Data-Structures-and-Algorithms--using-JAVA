@@ -21,13 +21,16 @@ package interviews.questions.amazon;
 //public List<String> findWords(final char[][] board) {
 //}
 
+import org.apache.commons.lang3.time.StopWatch;
+
 import java.util.*;
 
 
 public class Boggle {
 
     // Let the given dictionary be following
-    static final List<String> DICTIONARY = Arrays.asList("STAR", "NOTE", "SAND", "STONE");
+    //static final List<String> DICTIONARY = Arrays.asList("STAR", "NOTE", "SAND", "STONE");
+    static final List<String> DICTIONARY = new ArrayList<>(Arrays.asList("GEEKS", "FOR", "QUIZ", "GEE","GO"));
     //static final Set<String> WORD_DICTIONARY = new HashSet<>(Arrays.asList("STAR", "NOTE", "SAND", "STONE"));
     static final int DICTIONARY_SIZE = DICTIONARY.size();
     static final int WORD_MIN_SIZE = 3;
@@ -132,13 +135,21 @@ public class Boggle {
     public static void main(String[] args) {
         Boggle boggle = new Boggle();
 
-        char[][] board = {
+        StopWatch stopWatch = new StopWatch();
+        stopWatch.start();
+     /*   char[][] board = {
                 {'M', 'S', 'E'},
                 {'R', 'A', 'T'},
                 {'L', 'O', 'N'}
-        };
+        }; */
+        char board[][] = { { 'G', 'I', 'Z' },
+                           { 'U', 'E', 'K' },
+                           { 'Q', 'S', 'E' } };
 
         Set<String> validWords = boggle.searchBoggle(board);
         System.out.println(validWords);
+        stopWatch.stop();
+        System.out.println("Execution time in milli seconds for Boggle using Trie: "+stopWatch.getTime());
+        stopWatch.reset();
     }
 }
