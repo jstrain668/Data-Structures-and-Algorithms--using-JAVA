@@ -77,10 +77,12 @@ public class ShortestDistBetweenFriends {
     }
 
     public Deque<Person> findPathBFS(Map<Integer, Person> people, int source, int destination) {
+
         Queue<PathNode> toVisit = new LinkedList<PathNode>();
-        Set<Person> visited = new HashSet<>();
+        Set<Integer> visited = new HashSet<>();
+
         toVisit.add(new PathNode(people.get(source), null));
-        visited.add(people.get(source));
+        visited.add(people.get(source).getID());
         while (!toVisit.isEmpty()) {
             PathNode node = toVisit.poll();
             Person person = node.getPerson();
@@ -91,8 +93,8 @@ public class ShortestDistBetweenFriends {
             /* Search friends. */
             List<Person> friends = person.getFriends();
             for (Person friend : friends) {
-                if (!visited.contains(friend)) {
-                    visited.add(friend);
+                if (!visited.contains(friend.getID())) {
+                    visited.add(friend.getID());
                     toVisit.add(new PathNode(friend, node));
                 }
             }
@@ -102,9 +104,9 @@ public class ShortestDistBetweenFriends {
 
     public Deque<Person> findShortestPath(Person source, Person destination){
         Queue<PathNode> toVisit = new LinkedList<>();
-        Set<Person> visited = new HashSet<>();
+        Set<Integer> visited = new HashSet<>();
         toVisit.add(new PathNode(source,null));
-        visited.add(source);
+        visited.add(source.getID());
 
         while (!toVisit.isEmpty()){
             PathNode path = toVisit.poll();
@@ -115,8 +117,8 @@ public class ShortestDistBetweenFriends {
 
             List<Person> friends = person.getFriends();
             for (Person friend : friends){
-                if (!visited.contains(friend)){
-                    visited.add(friend);
+                if (!visited.contains(friend.getID())){
+                    visited.add(friend.getID());
                     toVisit.add(new PathNode(friend,path));
                 }
             }
