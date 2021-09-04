@@ -102,6 +102,13 @@ public class ShortestDistBetweenFriends {
         return null;
     }
 
+    //Solution: Apply BFS to find the path to the person in question. The source Persons friends are checked first and
+    // each of the friends friends and son on are checked until the person is found or no more nodes to be checked
+    //Time Complexity: breadth-first search from Source to Destination: We go through roughly k+k*k nodes: each of
+    // S’s k friends, and then each of their k friends which is generalised to O(k to the power of q) where q is the
+    // length of the path between Source and Destination
+    // Space Complexity: O(n) for all the nodes in the toVisited Queue, O(q) for the length of the path containing
+    //the nodes between source and desitnation and O(n) for the visited Set of nodes.
     public Deque<Person> findShortestPath(Person source, Person destination){
         Queue<PathNode> toVisit = new LinkedList<>();
         Set<Integer> visited = new HashSet<>();
