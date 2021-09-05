@@ -11,6 +11,7 @@ import java.util.Map;
 
 //Reference: https://javahungry.blogspot.com/2013/12/first-non-repeated-character-in-string-java-program-code-example.html
 //Reference: https://stackoverflow.com/questions/35151126/find-the-first-non-repeating-character-in-a-string/35151695
+//Reference: https://stackoverflow.com/questions/12752274/java-indexofstring-str-method-complexity
 
 public class FirstNonRepeatingChar {
 
