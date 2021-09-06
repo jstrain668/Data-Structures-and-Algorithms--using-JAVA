@@ -29,7 +29,7 @@ public class Sum4TwoX {
     // element is not considered more than once.
     //Time Complexity:  O(n^2).
     //Nested traversal is needed to store all pairs in the hash Map.
-    //Space Complexity:  O(n^2).
+    //Space Complexity:  O(n^2).  O(2n^2) for the two double loops
     //All n*(n-1) pairs are stored in hash Map so the space required is O(n^2)
     //Please write comments if you find any of the above codes/algorithms incorrect, or find other ways to solve the
     // same problem.
