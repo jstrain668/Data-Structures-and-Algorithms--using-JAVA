@@ -8,6 +8,8 @@ import java.util.*;
 // Normal Solution: Go over the data, keep the top x elements in a temp data structure. Use a binary tree or heap for
 // that data structure. O(n*log x)
 
+//Reference: https://www.geeksforgeeks.org/time-complexity-of-building-a-heap/
+
 public class TopXProducts {
 
 
