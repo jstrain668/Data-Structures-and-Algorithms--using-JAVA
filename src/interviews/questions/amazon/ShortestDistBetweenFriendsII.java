@@ -12,6 +12,7 @@ package interviews.questions.amazon;
 //}
 
 //Reference: Cracking coding interview - Scalability chapter
+//Reference: https://www.geeksforgeeks.org/design-data-structures-for-a-very-large-social-network-like-facebook-or-linkedln/
 
 import java.util.*;
 
