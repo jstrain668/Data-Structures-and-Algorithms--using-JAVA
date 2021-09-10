@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 //Reference: https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/
 
-public class HeightBalancedBST {
+public class ConvertArrayToBST {
 
     SingleLinkNode head, tail;
     SingleLinkNode current;
@@ -206,7 +206,7 @@ public class HeightBalancedBST {
     }
 
     public static void main(String[] args) {
-        HeightBalancedBST hbBST = new HeightBalancedBST();
+        ConvertArrayToBST hbBST = new ConvertArrayToBST();
         hbBST.constructFromArray();
         hbBST.constructFromSingleLinkedList();
     }
